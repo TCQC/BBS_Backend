@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+jdbc:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: root
+  password: root
+
+
+mybatis:
+#    config_file: mybatis_config.xml
+#    mapper_locations: /mapper/**.xml
+#    entity_package: com.imooc.demo.entity
+
+
+    mapper-locations: classpath:mapper/**.xml
+    type-aliases-package: com.imooc.demo.entity
