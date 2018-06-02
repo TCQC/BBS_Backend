@@ -52,7 +52,16 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.5.2</version>
         </dependency>
+
+        <!--配置tooken验证-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>

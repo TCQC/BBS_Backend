@@ -3,7 +3,7 @@ server:
 
 jdbc:
   driver: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+  url: jdbc:mysql://123.206.28.162:3306/bbs?useUnicode=true&characterEncoding=utf8&useSSL=false
   username: root
   password: root
 
@@ -11,8 +11,7 @@ jdbc:
 mybatis:
 #    config_file: mybatis_config.xml
 #    mapper_locations: /mapper/**.xml
-#    entity_package: com.imooc.demo.entity
-
+#    entity_package: com.tcqc.bbs.entity
 
     mapper-locations: classpath:mapper/**.xml
-    type-aliases-package: com.imooc.demo.entity
+    type-aliases-package: com.tcqc.bbs.entity
