@@ -30,7 +30,7 @@
 
 
 
-    <resultMap id="postDetail" type="com.tcqc.bbs.entity.Post">
+    <resultMap id="postInfo" type="com.tcqc.bbs.entity.Post">
         <id column = "p_id" property="id"></id>
         <result column="p_title" property="title"></result>
         <result column = "p_status" property="status"></result>
@@ -63,7 +63,7 @@
         </collection>
     </resultMap>
 
-    <select id="findPostById" resultMap="postDetail">
+    <select id="findPostById" resultMap="postInfo">
   select
    p.id p_id ,
    p.title p_title,
