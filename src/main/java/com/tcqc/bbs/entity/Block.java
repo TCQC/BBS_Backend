@@ -13,11 +13,11 @@ public class Block {
     private String name;
     private String description;
     private char status;
-    private List<Category> categories;
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
+    private List<Category> categories;
 
     public BigInteger getId() {
         return id;

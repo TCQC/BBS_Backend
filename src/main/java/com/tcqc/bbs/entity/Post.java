@@ -14,9 +14,10 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Post {
     //帖子ID
-    private Integer id;
+    private BigInteger id;
+
     //发帖人
-    private UserInfo user;
+    private UserInfo userInfo;
     //帖子的分类ID
     private BigInteger categoryId;
     //帖子的主题
@@ -24,9 +25,9 @@ public class Post {
     //帖子的内容
     private String content;
 
-    private List<Comment> comments;
+
     //帖子的状态( 0 删除 1 普通 2 加精 3 置顶)
-    private  char status;
+    private  int status;
     //帖子的创建时间
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
@@ -34,18 +35,93 @@ public class Post {
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
+    private List<Comment> comments;
+
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public BigInteger getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(BigInteger categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", user=" + user +
+                ", userInfo=" + userInfo +
                 ", categoryId=" + categoryId +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", comments=" + comments +
                 ", status=" + status +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", comments=" + comments +
                 '}';
     }
 }

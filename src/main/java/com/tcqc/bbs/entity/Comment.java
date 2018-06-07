@@ -16,11 +16,9 @@ public class Comment {
     //回复ID
     private BigInteger id;
     //该条回复的回复者信息
-    private BigInteger userId;
+
     // 用户信息
     private UserInfo userInfo;
-    // 该评论下的回复
-    private List<Reply> replies;
     //该条回复的回复内容
     private String content;
     //该条回复的状态（是否被设为禁止展示）
@@ -31,6 +29,8 @@ public class Comment {
     //回复的更新时间
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
+    // 该评论下的回复
+    private List<Reply> replies;
 
     public BigInteger getId() {
         return id;
@@ -40,13 +40,6 @@ public class Comment {
         this.id = id;
     }
 
-    public BigInteger getUserId() {
-        return userId;
-    }
-
-    public void setUserId(BigInteger userId) {
-        this.userId = userId;
-    }
 
     public UserInfo getUserInfo() {
         return userInfo;
@@ -100,7 +93,6 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", userId=" + userId +
                 ", userInfo=" + userInfo +
                 ", replies=" + replies +
                 ", content='" + content + '\'' +

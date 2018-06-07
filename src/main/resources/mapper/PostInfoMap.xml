@@ -37,7 +37,6 @@
         <result column = "p_content" property="content"></result>
         <result column = "p_update_time" property="updateTime"></result>
         <result column = "p_category_id" property ="categoryId"></result>
-        <result column = "p_userId" property="userId"></result>
         <association property="userInfo" javaType="com.tcqc.bbs.entity.info.UserInfo"
                      column="p_userId" select="getUserInfoMap">
         </association>
@@ -46,16 +45,14 @@
             <result column="c_status" property="status"></result>
             <result column="c_update_time" property="updateTime"></result>
             <result column="c_content" property="content"></result>
-            <result column="c_userId" property="userId"></result>
             <association property="userInfo" javaType="com.tcqc.bbs.entity.info.UserInfo"
                          column="c_userId" select="getUserInfoMap">
             </association>
             <collection property="replies" ofType="com.tcqc.bbs.entity.Reply">
                 <id column="r_id" property="id"></id>
-                <result column="r_status" property="status"></result>
+                <result column="r_create_time" property="createTime"></result>
                 <result column="r_update_time" property="updateTime"></result>
                 <result column="r_content" property="content"></result>
-                <result column="r_userId" property="userId"></result>
                 <association property="userInfo" javaType="com.tcqc.bbs.entity.info.UserInfo"
                              column="r_userId" select="getUserInfoMap">
                 </association>
@@ -63,7 +60,7 @@
         </collection>
     </resultMap>
 
-    <select id="findPostById" resultMap="postInfo">
+    <select id="getPostById" resultMap="postInfo">
   select
    p.id p_id ,
    p.title p_title,
@@ -79,6 +76,7 @@
    c.user_id c_userId,
    r.id r_id,
    r.status r_status,
+   r.create_time r_create_time ,
    r.update_time r_update_time ,
    r.content r_content,
    r.user_id r_userId

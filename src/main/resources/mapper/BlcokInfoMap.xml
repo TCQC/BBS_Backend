@@ -3,12 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tcqc.bbs.dao.BlockDao">
-
-    <select id ="getAllBlocksInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
+    <resultMap id="block" type="com.tcqc.bbs.entity.Block">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <collection property="categories" ofType="com.tcqc.bbs.entity.Category">
+            <id property="id" column="category_id"/>
+            <result property="name" column="category_name"/>
+            <result property="description" column="category_description"/>
+        </collection>
+    </resultMap>
+    <!--做链接可以做优化-->
+    <select id ="findAllBlocksInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
      select block.id, block.name ,count(category.id) category_sum,count(post.id) post_sum from block
      left join category on block.id=category.block_id
      left join post on category.id=post.category_id
      group by block.name;
+    </select>
+
+    <select id="getBlockById" resultMap="block">
+      select block.id, block.name, block.description, category.id category_id, category.name category_name, category.description category_description
+      from block
+      left join category on block.id = category.block_id
+      where block.id = #{id}
     </select>
 
 </mapper>
