@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcqc.bbs.dao.PostDao">
+
+    <select id ="findAllPostInfoByCategoryId" resultType="com.tcqc.bbs.entity.info.PostInfo">
+     select p.id id,p.title title,u.nickname nickname,p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
+     (select id,category_id,title,user_id,status,update_time from post) p
+     left join (select id,nickname from user) u on p.user_id=u.id
+     left join (select id,post_id from star)s on s.post_id = p.id
+     left join (select id,post_id from comment) c on c.post_id = p.id
+      where p.category_id=#{id}
+     group by p.id
+     order by ${sortType}
+     limit #{startIndex}, #{pageSize};
+    </select>
+
+    <select id ="findAllPostInfoByUserId" resultType="com.tcqc.bbs.entity.info.PostInfo">
+     select p.id id,p.title title,u.nickname nickname,p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
+     (select id,category_id,title,user_id,status,update_time from post) p
+     left join (select id,nickname from user) u on p.user_id=u.id
+     left join (select id,post_id from star)s on s.post_id = p.id
+     left join (select id,post_id from comment) c on c.post_id = p.id
+     where u.id=#{id}
+     group by p.id
+     order by ${sortType}
+     limit #{startIndex},#{pageSize};
+    </select>
+
+
+
+    <resultMap id="postDetail" type="com.tcqc.bbs.entity.Post">
+        <id column = "p_id" property="id"></id>
+        <result column="p_title" property="title"></result>
+        <result column = "p_status" property="status"></result>
+        <result column = "p_content" property="content"></result>
+        <result column = "p_update_time" property="updateTime"></result>
+        <result column = "p_category_id" property ="categoryId"></result>
+        <result column = "p_userId" property="userId"></result>
+        <association property="userInfo" javaType="com.tcqc.bbs.entity.info.UserInfo"
+                     column="p_userId" select="getUserInfoMap">
+        </association>
+        <collection property="comments" ofType="com.tcqc.bbs.entity.Comment">
+            <id column="c_id" property="id"></id>
+            <result column="c_status" property="status"></result>
+            <result column="c_update_time" property="updateTime"></result>
+            <result column="c_content" property="content"></result>
+            <result column="c_userId" property="userId"></result>
+            <association property="userInfo" javaType="com.tcqc.bbs.entity.info.UserInfo"
+                         column="c_userId" select="getUserInfoMap">
+            </association>
+            <collection property="replies" ofType="com.tcqc.bbs.entity.Reply">
+                <id column="r_id" property="id"></id>
+                <result column="r_status" property="status"></result>
+                <result column="r_update_time" property="updateTime"></result>
+                <result column="r_content" property="content"></result>
+                <result column="r_userId" property="userId"></result>
+                <association property="userInfo" javaType="com.tcqc.bbs.entity.info.UserInfo"
+                             column="r_userId" select="getUserInfoMap">
+                </association>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findPostById" resultMap="postDetail">
+  select
+   p.id p_id ,
+   p.title p_title,
+   p.status p_status,
+   p.content p_content,
+   p.update_time p_update_time,
+   p.category_id p_category_id,
+   p.user_id p_userId,
+   c.id c_id,
+   c.status c_status,
+   c.update_time c_update_time,
+   c.content c_content,
+   c.user_id c_userId,
+   r.id r_id,
+   r.status r_status,
+   r.update_time r_update_time ,
+   r.content r_content,
+   r.user_id r_userId
+   from post p
+   left join comment c on p.id=c.post_id
+   left join reply r on r.comment_id=c.id
+   left join user u on p.user_id=u.id
+   where p.id=#{id};
+ </select>
+
+    <select id ="getUserInfoMap" parameterType="java.lang.Integer" resultType="com.tcqc.bbs.entity.info.UserInfo">
+           select id ,nickname , avatar, exp, status from user
+            where id=#{user_id};
+     </select>
+
+
+</mapper>

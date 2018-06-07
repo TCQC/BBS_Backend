@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcqc.bbs.dao.BlockDao">
+
+    <select id ="getAllBlocksInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
+     select block.id, block.name ,count(category.id) category_sum,count(post.id) post_sum from block
+     left join category on block.id=category.block_id
+     left join post on category.id=post.category_id
+     group by block.name;
+    </select>
+
+</mapper>
