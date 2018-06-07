@@ -31,7 +31,7 @@ public interface PostDao {
      * @param id
      * @return
      */
-    List<PostInfo>findAllPostInfoByUserId(@Param("id")BigInteger id, @Param("startIndex")BigInteger starIndex, @Param("pageSize")BigInteger pageSize, @Param("sortType")String sortType);
+    List<PostInfo>findAllPostInfoByUserId(@Param("id")BigInteger id, @Param("startIndex")int starIndex, @Param("pageSize")int pageSize, @Param("sortType")String sortType);
 
 
     /**
@@ -40,12 +40,12 @@ public interface PostDao {
      * @param id
      * @return
      */
-    List<PostInfo> findAllPostInfoByCategoryId(@Param("id")BigInteger id, @Param("startIndex")BigInteger startIndex,@Param("pageSize")BigInteger pageSize, @Param("sortType")String  sortType);
+    List<PostInfo> findAllPostInfoByCategoryId(@Param("id")BigInteger id, @Param("startIndex")int startIndex,@Param("pageSize")int pageSize, @Param("sortType")String  sortType);
 
     /**
      * 根据帖子Id查看某条帖子的详细信息
      */
-    Post findPostById(@Param("id")BigInteger id);
+    Post getPostById(@Param("id")BigInteger id);
 
 //    /**
 //     * 查询所有的Post (无需连表） (需要添加 page 和 sort 参数)

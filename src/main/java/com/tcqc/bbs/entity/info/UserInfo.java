@@ -22,7 +22,7 @@ public class UserInfo {
     private String token;
     // 用户状态
     private int status;
-    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp lastLoginTime;
 
     public BigInteger getId() {

@@ -1,5 +1,7 @@
 package com.tcqc.bbs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigInteger;
 import java.sql.Timestamp;
 
@@ -7,7 +9,9 @@ public class Favorite {
     private BigInteger id;
     private BigInteger userId;
     private String name;
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {

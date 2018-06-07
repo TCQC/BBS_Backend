@@ -1,5 +1,6 @@
 package com.tcqc.bbs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tcqc.bbs.entity.info.UserInfo;
 
 import java.math.BigInteger;
@@ -14,12 +15,16 @@ public class Reply {
     //所回复的评论ID
     private BigInteger commentId;
     //该条回复的回复者
-    private UserInfo user;
+    private BigInteger userId;
+
+    private UserInfo userInfo;
     //该条回复的回复内容
     private String content;
     //回复的创建时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //回复的更新时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {
@@ -38,12 +43,20 @@ public class Reply {
         this.commentId = commentId;
     }
 
-    public UserInfo getUser() {
-        return user;
+    public BigInteger getUserId() {
+        return userId;
     }
 
-    public void setUser(UserInfo user) {
-        this.user = user;
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public String getContent() {
@@ -70,13 +83,13 @@ public class Reply {
         this.updateTime = updateTime;
     }
 
-
     @Override
     public String toString() {
         return "Reply{" +
                 "id=" + id +
                 ", commentId=" + commentId +
-                ", user=" + user +
+                ", userId=" + userId +
+                ", userInfo=" + userInfo +
                 ", content='" + content + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

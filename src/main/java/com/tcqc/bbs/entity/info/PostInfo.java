@@ -1,5 +1,8 @@
 package com.tcqc.bbs.entity.info;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.math.BigInteger;
 import java.sql.Timestamp;
 
@@ -13,6 +16,7 @@ public class PostInfo {
     private String status;
     private int commentSum;
     private int favoriteSum;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {

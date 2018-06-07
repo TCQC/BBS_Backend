@@ -10,7 +10,7 @@ public class BlockInfo {
     private String name;
     private int category_sum;
     private int post_sum;
-    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {

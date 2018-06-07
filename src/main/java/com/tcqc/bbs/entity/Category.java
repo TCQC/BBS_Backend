@@ -1,5 +1,6 @@
 package com.tcqc.bbs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigInteger;
@@ -21,8 +22,10 @@ public class Category {
     //该分类的状态（删除或者正常）
     private char status;
     //分类的创建时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //分类的更新时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {

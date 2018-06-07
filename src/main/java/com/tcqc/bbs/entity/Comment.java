@@ -1,5 +1,6 @@
 package com.tcqc.bbs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tcqc.bbs.entity.info.UserInfo;
 
@@ -15,16 +16,20 @@ public class Comment {
     //回复ID
     private BigInteger id;
     //该条回复的回复者信息
-    private UserInfo user;
+    private BigInteger userId;
+    // 用户信息
+    private UserInfo userInfo;
     // 该评论下的回复
     private List<Reply> replies;
     //该条回复的回复内容
     private String content;
     //该条回复的状态（是否被设为禁止展示）
-    private char status;
+    private int status;
     //回复的创建时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //回复的更新时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {
@@ -35,12 +40,20 @@ public class Comment {
         this.id = id;
     }
 
-    public UserInfo getUser() {
-        return user;
+    public BigInteger getUserId() {
+        return userId;
     }
 
-    public void setUser(UserInfo user) {
-        this.user = user;
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public List<Reply> getReplies() {
@@ -59,11 +72,11 @@ public class Comment {
         this.content = content;
     }
 
-    public char getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -87,7 +100,8 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", user=" + user +
+                ", userId=" + userId +
+                ", userInfo=" + userInfo +
                 ", replies=" + replies +
                 ", content='" + content + '\'' +
                 ", status=" + status +

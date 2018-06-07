@@ -35,7 +35,8 @@ public class PostController {
      */
     @RequestMapping(value = "/category/{id}/page/{page}/{sort}", method = RequestMethod.GET)
     public FormatResult<List<PostInfo>> findAllPostByCategoryId(@PathVariable("id")BigInteger id, @PathVariable("page") int page, @PathVariable("sort") String sort){
-        return null;
+        int startIndex = (page - 1) * pageSize;
+        return postService.findAllPostByCategoryId(id, startIndex, pageSize, sort);
     }
 
     /**
@@ -47,7 +48,8 @@ public class PostController {
      */
     @RequestMapping(value = "user/{id}/page/{page}/{sort}",method = RequestMethod.GET)
     public FormatResult< List<PostInfo>> findAllPostInfoByUserId(@PathVariable("id")BigInteger id, @PathVariable("page") int page,@PathVariable("sort") String sort){
-        return null;
+        int startIndex = (page - 1) * pageSize;
+        return postService.findAllPostByUserId(id, startIndex, pageSize, sort);
     }
 
     /**
@@ -57,7 +59,7 @@ public class PostController {
      */
     @RequestMapping(value = "id/{id}", method = RequestMethod.GET)
     public  FormatResult<Post>findPostById(@PathVariable("id")BigInteger id){
-        return null;
+        return postService.getPostById(id);
     }
 
 }

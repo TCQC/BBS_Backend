@@ -1,5 +1,6 @@
 package com.tcqc.bbs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tcqc.bbs.entity.info.UserInfo;
 
 import java.math.BigInteger;
@@ -16,8 +17,10 @@ public class User {
     //用户信息
     private UserInfo userInfo;
     //用户创建时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //用户信息修改时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {
