@@ -12,6 +12,8 @@ public class UserInfo {
     private BigInteger id;
     // 用户昵称
     private String nickname;
+    // 头像
+    private String avatar;
     // 用户经验值
     private int exp;
     // 用户等级名称
@@ -89,16 +91,25 @@ public class UserInfo {
         this.status = status;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", exp=" + exp +
                 ", rank='" + rank + '\'' +
                 ", description='" + description + '\'' +
                 ", token='" + token + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
                 ", lastLoginTime=" + lastLoginTime +
                 '}';
     }

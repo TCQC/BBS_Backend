@@ -14,14 +14,12 @@ public class User {
     private String username;
     //用户密码
     private String password;
-    //用户信息
-    private UserInfo userInfo;
     //用户创建时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //用户信息修改时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
+    //用户信息
+    private UserInfo userInfo;
 
     public BigInteger getId() {
         return id;
@@ -70,6 +68,5 @@ public class User {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
-
 
 }

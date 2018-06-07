@@ -7,25 +7,25 @@
     <select id ="findAllPostInfoByCategoryId" resultType="com.tcqc.bbs.entity.info.PostInfo">
      select p.id id,p.title title,u.nickname nickname,p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
      (select id,category_id,title,user_id,status,update_time from post) p
-     left join (select id,nickname from user) u on p.user_id=u.id
-     left join (select id,post_id from star)s on s.post_id = p.id
-     left join (select id,post_id from comment) c on c.post_id = p.id
-      where p.category_id=#{id}
+     left join (select id, nickname from user) u on p.user_id=u.id
+     left join (select id, post_id from star)s on s.post_id = p.id
+     left join (select id, post_id, status from comment) c on c.post_id = p.id and c.status = 1
+      where p.category_id=#{id} and p.status != 0
      group by p.id
      order by ${sortType}
      limit #{startIndex}, #{pageSize};
     </select>
 
     <select id ="findAllPostInfoByUserId" resultType="com.tcqc.bbs.entity.info.PostInfo">
-     select p.id id,p.title title,u.nickname nickname,p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
-     (select id,category_id,title,user_id,status,update_time from post) p
-     left join (select id,nickname from user) u on p.user_id=u.id
-     left join (select id,post_id from star)s on s.post_id = p.id
-     left join (select id,post_id from comment) c on c.post_id = p.id
-     where u.id=#{id}
+     select p.id id, p.title title, u.nickname nickname, p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
+     (select id,category_id, title, user_id, status, update_time from post) p
+     left join (select id, nickname from user) u on p.user_id=u.id
+     left join (select id, post_id from star)s on s.post_id = p.id
+     left join (select id, post_id, status from comment) c on c.post_id = p.id and c.status = 1
+     where u.id=#{id} and p.status != 0
      group by p.id
      order by ${sortType}
-     limit #{startIndex},#{pageSize};
+     limit #{startIndex}, #{pageSize};
     </select>
 
 
@@ -81,14 +81,14 @@
    r.content r_content,
    r.user_id r_userId
    from post p
-   left join comment c on p.id=c.post_id
-   left join reply r on r.comment_id=c.id
+   left join comment c on p.id = c.post_id and c.status = 1
+   left join reply r on r.comment_id=c.id and r.status = 1
    left join user u on p.user_id=u.id
-   where p.id=#{id};
+   where p.id=#{id} and p.status != 0 ;
  </select>
 
-    <select id ="getUserInfoMap" parameterType="java.lang.Integer" resultType="com.tcqc.bbs.entity.info.UserInfo">
-           select id ,nickname , avatar, exp, status from user
+    <select id ="getUserInfoMap" resultType="com.tcqc.bbs.entity.info.UserInfo">
+           select id ,nickname, avatar, exp, status from user
             where id=#{user_id};
      </select>
 
