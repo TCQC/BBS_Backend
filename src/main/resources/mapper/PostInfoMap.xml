@@ -5,12 +5,12 @@
 <mapper namespace="com.tcqc.bbs.dao.PostDao">
 
     <select id ="findAllPostInfoByCategoryId" resultType="com.tcqc.bbs.entity.info.PostInfo">
-     select p.id id,p.title title,u.nickname nickname,p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
-     (select id,category_id,title,user_id,status,update_time from post) p
+     select p.id id, p.title title, u.nickname nickname, p.status status, count(s.id) favorite_sum, count(c.id) comment_sum, p.update_time updateTime from
+     (select id,category_id,title,user_id,status,update_time from post where status != 0) p
      left join (select id, nickname from user) u on p.user_id=u.id
      left join (select id, post_id from star)s on s.post_id = p.id
-     left join (select id, post_id, status from comment) c on c.post_id = p.id and c.status = 1
-      where p.category_id=#{id} and p.status != 0
+     left join (select id, post_id, status from comment where status = 1 ) c on c.post_id = p.id
+      where p.category_id=#{id}
      group by p.id
      order by ${sortType}
      limit #{startIndex}, #{pageSize};
@@ -18,11 +18,11 @@
 
     <select id ="findAllPostInfoByUserId" resultType="com.tcqc.bbs.entity.info.PostInfo">
      select p.id id, p.title title, u.nickname nickname, p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
-     (select id,category_id, title, user_id, status, update_time from post) p
+     (select id,category_id, title, user_id, status, update_time from post where status != 0) p
      left join (select id, nickname from user) u on p.user_id=u.id
      left join (select id, post_id from star)s on s.post_id = p.id
-     left join (select id, post_id, status from comment) c on c.post_id = p.id and c.status = 1
-     where u.id=#{id} and p.status != 0
+     left join (select id, post_id, status from comment where status = 1) c on c.post_id = p.id
+     where u.id=#{id}
      group by p.id
      order by ${sortType}
      limit #{startIndex}, #{pageSize};

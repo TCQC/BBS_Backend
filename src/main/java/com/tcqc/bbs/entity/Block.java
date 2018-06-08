@@ -9,14 +9,21 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Block {
+    //版块ID
     private BigInteger id;
+    //版块名称
     private String name;
+    //版块的描述信息
     private String description;
-    private char status;
+    //版块的状态
+    private int  status;
+    //版块的创建时间
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
+    //版块的更新时间
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
+    //版块下面的所有的目录信息
     private List<Category> categories;
 
     public BigInteger getId() {
@@ -43,11 +50,11 @@ public class Block {
         this.description = description;
     }
 
-    public char getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

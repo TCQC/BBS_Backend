@@ -12,7 +12,8 @@ import java.sql.Timestamp;
 public class Reply {
     //回复ID
     private BigInteger id;
-
+    //回复者的ID
+    private BigInteger userId;
     //该条回复的回复内容
     private String content;
     //回复的创建时间
@@ -23,6 +24,15 @@ public class Reply {
     private Timestamp updateTime;
     //该条回复的回复者
     private UserInfo userInfo;
+
+    public BigInteger getUserId() {
+        return userId;
+    }
+
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
+    }
+
     public BigInteger getId() {
         return id;
     }

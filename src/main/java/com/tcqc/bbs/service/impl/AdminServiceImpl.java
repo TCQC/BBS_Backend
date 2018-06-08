@@ -1,6 +1,8 @@
 package com.tcqc.bbs.service.impl;
 
+import com.tcqc.bbs.dao.AdminDao;
 import com.tcqc.bbs.dao.UserDao;
+import com.tcqc.bbs.entity.Admin;
 import com.tcqc.bbs.entity.Block;
 import com.tcqc.bbs.service.AdminService;
 import com.tcqc.bbs.util.format.FormatResult;
@@ -13,10 +15,22 @@ import java.math.BigInteger;
 @Service
 public class AdminServiceImpl implements AdminService {
     private UserDao userDao;
+    private AdminDao adminDao;
 
     @Autowired
-    public AdminServiceImpl(UserDao userDao){
+    public AdminServiceImpl(UserDao userDao, AdminDao adminDao) {
         this.userDao = userDao;
+        this.adminDao = adminDao;
+    }
+
+
+    @Override
+    public FormatResult<Admin> login(String username, String password) {
+        Admin admin = adminDao.getUserInfoByUsernameAndPassword(username, password);
+        if (admin == null){
+            return FormatResultGenerator.genErrorResult("用户名或密码错误");
+        }
+        return FormatResultGenerator.genSuccessResult(admin);
     }
 
     public FormatResult<Object> delUserById(BigInteger id) {

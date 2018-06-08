@@ -6,11 +6,16 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 
 public class BlockInfo {
+    // 版块ID
     private BigInteger id;
+    //版块名称
     private String name;
-    private int category_sum;
-    private int post_sum;
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
+    //版块拥有的分类数目
+    private int categorySum;
+    //版块拥有的帖子数目
+    private int postSum;
+    //版块下的帖子的最近更新时间
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {
@@ -29,21 +34,6 @@ public class BlockInfo {
         this.name = name;
     }
 
-    public int getCategory_sum() {
-        return category_sum;
-    }
-
-    public void setCategory_sum(int category_sum) {
-        this.category_sum = category_sum;
-    }
-
-    public int getPost_sum() {
-        return post_sum;
-    }
-
-    public void setPost_sum(int post_sum) {
-        this.post_sum = post_sum;
-    }
 
     public Timestamp getUpdateTime() {
         return updateTime;
@@ -53,13 +43,29 @@ public class BlockInfo {
         this.updateTime = updateTime;
     }
 
+    public int getCategorySum() {
+        return categorySum;
+    }
+
+    public void setCategorySum(int categorySum) {
+        this.categorySum = categorySum;
+    }
+
+    public int getPostSum() {
+        return postSum;
+    }
+
+    public void setPostSum(int postSum) {
+        this.postSum = postSum;
+    }
+
     @Override
     public String toString() {
         return "BlockInfo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", category_sum=" + category_sum +
-                ", post_sum=" + post_sum +
+                ", categorySum=" + categorySum +
+                ", postSum=" + postSum +
                 ", updateTime=" + updateTime +
                 '}';
     }

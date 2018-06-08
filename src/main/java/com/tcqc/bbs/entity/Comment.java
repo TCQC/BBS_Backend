@@ -15,8 +15,8 @@ import java.util.List;
 public class Comment {
     //回复ID
     private BigInteger id;
-    //该条回复的回复者信息
-
+    //该条回复用户ID
+    private BigInteger userId;
     // 用户信息
     private UserInfo userInfo;
     //该条回复的回复内容

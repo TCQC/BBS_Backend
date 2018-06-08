@@ -6,11 +6,16 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 
 public class Favorite {
+    //收藏夹ID
     private BigInteger id;
+    //收藏夹的主人ID
     private BigInteger userId;
+    //收藏夹的名称
     private String name;
+    //收藏夹的创建时间
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
+    //收藏夹的更新时间
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 

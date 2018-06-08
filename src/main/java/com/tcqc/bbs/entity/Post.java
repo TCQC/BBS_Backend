@@ -15,17 +15,14 @@ import java.util.List;
 public class Post {
     //帖子ID
     private BigInteger id;
-
-    //发帖人
-    private UserInfo userInfo;
+    //发帖人ID
+    private BigInteger userId;
     //帖子的分类ID
     private BigInteger categoryId;
     //帖子的主题
     private String title;
     //帖子的内容
     private String content;
-
-
     //帖子的状态( 0 删除 1 普通 2 加精 3 置顶)
     private  int status;
     //帖子的创建时间
@@ -34,7 +31,8 @@ public class Post {
     //帖子的更新时间
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
-
+    //发帖人信息
+    private UserInfo userInfo;
     private List<Comment> comments;
 
     public BigInteger getId() {
@@ -45,6 +43,13 @@ public class Post {
         this.id = id;
     }
 
+    public BigInteger getUserId() {
+        return userId;
+    }
+
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
+    }
 
     public UserInfo getUserInfo() {
         return userInfo;

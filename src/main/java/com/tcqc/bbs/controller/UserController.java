@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "user")
 public class UserController {
@@ -68,7 +68,5 @@ public class UserController {
         }
         return userInfoFormatResult;
     }
-
-
 
 }

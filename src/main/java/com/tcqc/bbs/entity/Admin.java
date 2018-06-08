@@ -9,9 +9,47 @@ public class Admin {
     //管理员ID
     private BigInteger id;
     //管理员名字
-    private String name;
+    private String userName;
     //管理员的密码
     private String password;
+    //管理员昵称
+    private String nickname;
+    //管理员性别
+    private String gender;
+    //管理员头像
+    private String avatar;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public BigInteger getId() {
         return id;
@@ -21,13 +59,7 @@ public class Admin {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getPassword() {
         return password;
@@ -41,7 +73,7 @@ public class Admin {
     public String toString() {
         return "Admin{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

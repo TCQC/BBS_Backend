@@ -69,4 +69,15 @@ public class User {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", userInfo=" + userInfo +
+                '}';
+    }
 }

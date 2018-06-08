@@ -6,15 +6,22 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 
 /**
- * 帖子信息
+ * 帖子的基本信息，包括收藏量，评论量等
  */
 public class PostInfo {
+    //帖子的id
     private BigInteger id;
+    //帖子的标题
     private String title;
+    //帖子主人的昵称
     private String nickname;
-    private String status;
+    //帖子的状态
+    private int status;
+    //帖子的评论量
     private int commentSum;
+    //帖子的收藏量
     private int favoriteSum;
+    //帖子的最后更新时间
     @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Timestamp updateTime;
 
@@ -42,11 +49,11 @@ public class PostInfo {
         this.nickname = nickname;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

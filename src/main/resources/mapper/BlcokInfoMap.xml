@@ -13,12 +13,14 @@
             <result property="description" column="category_description"/>
         </collection>
     </resultMap>
-    <!--做链接可以做优化-->
-    <select id ="findAllBlocksInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
-     select block.id, block.name ,count(category.id) category_sum,count(post.id) post_sum from block
-     left join category on block.id=category.block_id
-     left join post on category.id=post.category_id
-     group by block.name;
+
+    <select id ="findAllBlockInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
+      select block.id, block.name , count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
+      (select id, name from block) block,
+      (select id, block_id from category ) category ,
+      (select id, category_id, update_time from post) post
+      where block.id = category.block_id and category.id = post.category_id
+      group by block.id;
     </select>
 
     <select id="getBlockById" resultMap="block">

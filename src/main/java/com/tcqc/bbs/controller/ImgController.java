@@ -12,7 +12,7 @@ import java.io.*;
  * 上传图片 头像部分使用
  */
 @RestController
-@RequestMapping("/upload")
+@RequestMapping("upload")
 public class ImgController {
 
     @RequestMapping(value = "/avatar",method = RequestMethod.POST)

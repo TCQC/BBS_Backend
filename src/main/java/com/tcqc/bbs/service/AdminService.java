@@ -1,11 +1,13 @@
 package com.tcqc.bbs.service;
 
+import com.tcqc.bbs.entity.Admin;
 import com.tcqc.bbs.entity.Block;
 import com.tcqc.bbs.util.format.FormatResult;
 
 import java.math.BigInteger;
 
 public interface AdminService {
+    FormatResult<Admin> login(String username, String password);
     /**
      * 删除用户，status设置为0
      * @param id

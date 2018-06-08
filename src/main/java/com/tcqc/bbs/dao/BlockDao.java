@@ -25,7 +25,7 @@ public interface BlockDao {
      * 加载所有版块信息 （主页加载用）
      * @return
      */
-    List<BlockInfo> getAllBlockInfos();
+    List<BlockInfo> findAllBlockInfo();
 
     /**
      * 加载某个版块的所有categorys 信息
