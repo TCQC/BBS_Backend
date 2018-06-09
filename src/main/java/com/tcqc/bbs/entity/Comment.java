@@ -17,6 +17,8 @@ public class Comment {
     private BigInteger id;
     //该条回复用户ID
     private BigInteger userId;
+    //该条回复所对应的帖子id；
+    private BigInteger postId;
     // 用户信息
     private UserInfo userInfo;
     //该条回复的回复内容
@@ -89,16 +91,33 @@ public class Comment {
         this.updateTime = updateTime;
     }
 
+    public BigInteger getUserId() {
+        return userId;
+    }
+
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
+    }
+
+    public BigInteger getPostId() {
+        return postId;
+    }
+
+    public void setPostId(BigInteger postId) {
+        this.postId = postId;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", userInfo=" + userInfo +
-                ", replies=" + replies +
                 ", content='" + content + '\'' +
                 ", status=" + status +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", replies=" + replies +
                 '}';
     }
 }

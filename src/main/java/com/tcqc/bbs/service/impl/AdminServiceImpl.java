@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -25,6 +27,18 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
+    public FormatResult<Map<String, Object>> getIndexStatus() {
+        return FormatResultGenerator.genSuccessResult(adminDao.getBasicInfoForBackend());
+    }
+
+    @Override
+    public FormatResult<List<Map<String, Object>>> findAllUser(int page, int size) {
+        int start = (page - 1) * size;
+        List<Map<String, Object>> users = userDao.findAll(start, size);
+        return FormatResultGenerator.genSuccessResult(users);
+    }
+
+    @Override
     public FormatResult<Admin> login(String username, String password) {
         Admin admin = adminDao.getUserInfoByUsernameAndPassword(username, password);
         if (admin == null){
@@ -33,8 +47,8 @@ public class AdminServiceImpl implements AdminService {
         return FormatResultGenerator.genSuccessResult(admin);
     }
 
-    public FormatResult<Object> delUserById(BigInteger id) {
-        int result = userDao.delById(id);
+    public FormatResult<Object> changeUserStatus(BigInteger id, int status) {
+        int result = userDao.changeStatusById(id, status);
         if (result <= 0){
             return FormatResultGenerator.genErrorResult("用户ID不存在");
         }
@@ -44,5 +58,12 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public FormatResult<Object> addBlock(Block block) {
         return null;
+    }
+
+    @Override
+    public FormatResult<Integer> getUserPageNum(int size) {
+        int num =  userDao.getUserSum();
+        int sum = (num - 1) / size + 1;
+        return FormatResultGenerator.genSuccessResult(sum);
     }
 }

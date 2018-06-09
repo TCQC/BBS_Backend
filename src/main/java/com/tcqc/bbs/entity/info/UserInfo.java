@@ -24,6 +24,8 @@ public class UserInfo {
     private String token;
     // 用户状态
     private int status;
+    //用户工作地点
+    private String workPlace;
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp lastLoginTime;
 
@@ -99,6 +101,14 @@ public class UserInfo {
         this.avatar = avatar;
     }
 
+
+    public String getWorkPlace() {
+        return workPlace;
+    }
+
+    public void setWorkPlace(String workPlace) {
+        this.workPlace = workPlace;
+    }
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -110,6 +120,7 @@ public class UserInfo {
                 ", description='" + description + '\'' +
                 ", token='" + token + '\'' +
                 ", status=" + status +
+                ", workPlace='" + workPlace + '\'' +
                 ", lastLoginTime=" + lastLoginTime +
                 '}';
     }

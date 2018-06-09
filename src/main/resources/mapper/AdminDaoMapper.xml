@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcqc.bbs.dao.AdminDao">
+    <select id = "getBasicInfoForBackend" resultType="java.util.HashMap">
+    select postSum, userInc, postInc, userSum, weeklyUser, todayUser from
+    (select count(id) postSum from post) postSum,
+    (select count(id) postInc from post where create_time > date_add(now(),interval -7 day))postInc,
+    (select count(id) userInc from user where create_time > date_add(now(),interval -7 day))userInc,
+    (select count(id) weeklyUser from user where last_login_time > date_add(now(),interval -7 day))weeklyUser,
+    (select count(id) todayUser from user where last_login_time = curdate()) todayUser,
+    (select count(id) userSum from user) userSum;
+    </select>
+
+</mapper>
