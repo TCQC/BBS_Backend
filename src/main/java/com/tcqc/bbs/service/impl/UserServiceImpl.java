@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         if (userDao.isNicknameExist(nickname) != null)
             return FormatResultGenerator.genErrorResult("昵称已经存在");
         if (userDao.isUsernameExist(username) != null)
-            return FormatResultGenerator.genErrorResult("账号已被注册");
+            return FormatResultGenerator.genErrorResult("邮箱已被注册");
         int result = userDao.addUser(username, password, nickname);
         if (result == 0)
             return FormatResultGenerator.genErrorResult("无法插入数据库");
