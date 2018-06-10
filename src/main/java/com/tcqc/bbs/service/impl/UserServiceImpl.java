@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public FormatResult<UserInfo> register(String nickname, String username, String password) {
         if (userDao.isNicknameExist(nickname) != null)
-            return FormatResultGenerator.genErrorResult("用户名已存在");
+            return FormatResultGenerator.genErrorResult("昵称已经存在");
         if (userDao.isUsernameExist(username) != null)
             return FormatResultGenerator.genErrorResult("账号已被注册");
         int result = userDao.addUser(username, password, nickname);

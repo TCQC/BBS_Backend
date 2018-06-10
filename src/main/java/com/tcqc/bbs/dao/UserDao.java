@@ -64,6 +64,9 @@ public interface UserDao {
     @Select("select * from user limit #{startIndex}, #{pageSize}")
     List<Map<String, Object>> findAll(@Param("startIndex") int  startIndex, @Param("pageSize") int pageSize);
 
+    @Select("select * from user where nickname like #{nickname}")
+    List<Map<String, Object>> findAllByNickname(@Param("nickname") String pattern);
+
     /**
      * 将用户删除，只是使status = 0
      * @param id

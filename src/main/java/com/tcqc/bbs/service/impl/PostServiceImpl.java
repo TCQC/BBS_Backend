@@ -47,4 +47,12 @@ public class PostServiceImpl implements PostService {
         }
         return FormatResultGenerator.genSuccessResult(postInfos);
     }
+
+    @Override
+    public FormatResult<Object> changePostStatus(BigInteger id, int status) {
+        int i =  postDao.changePostStatusById(id, status);
+        return FormatResultGenerator.genSuccessResult();
+    }
+
+
 }

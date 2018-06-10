@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface AdminService {
+    /**
+     * 加载主页信息
+     * @return
+     */
     FormatResult<Map<String, Object>> getIndexStatus();
     /**
      * 查询所有用户列表
@@ -19,12 +23,28 @@ public interface AdminService {
     FormatResult<List<Map<String, Object>>> findAllUser(int page, int size);
 
     /**
+     * 查询所有Post
+     * @param page
+     * @param size
+     * @return
+     */
+    FormatResult<List<Map<String, Object>>> findAllPost(int page, int size);
+
+    /**
      * 管理员登录
      * @param username
      * @param password
      * @return
      */
     FormatResult<Admin> login(String username, String password);
+
+    /**
+     * 使用昵称模糊查询用户列表
+     * @param pattern
+     * @return
+     */
+    FormatResult<List<Map<String, Object>>> findAllUserByNickname(String pattern);
+
     /**
      * 修改用户状态
      * @param id
@@ -45,4 +65,10 @@ public interface AdminService {
      * @return
      */
     FormatResult<Integer> getUserPageNum(int size);
+
+    /**
+     * 得到Post页面页数
+     * @return
+     */
+    FormatResult<Integer> getPostPageNum(int size);
 }

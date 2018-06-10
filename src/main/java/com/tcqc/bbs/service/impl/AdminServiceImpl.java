@@ -1,6 +1,7 @@
 package com.tcqc.bbs.service.impl;
 
 import com.tcqc.bbs.dao.AdminDao;
+import com.tcqc.bbs.dao.PostDao;
 import com.tcqc.bbs.dao.UserDao;
 import com.tcqc.bbs.entity.Admin;
 import com.tcqc.bbs.entity.Block;
@@ -18,13 +19,14 @@ import java.util.Map;
 public class AdminServiceImpl implements AdminService {
     private UserDao userDao;
     private AdminDao adminDao;
+    private PostDao postDao;
 
     @Autowired
-    public AdminServiceImpl(UserDao userDao, AdminDao adminDao) {
+    public AdminServiceImpl(UserDao userDao, AdminDao adminDao, PostDao postDao) {
         this.userDao = userDao;
         this.adminDao = adminDao;
+        this.postDao = postDao;
     }
-
 
     @Override
     public FormatResult<Map<String, Object>> getIndexStatus() {
@@ -39,12 +41,26 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public FormatResult<List<Map<String, Object>>> findAllPost(int page, int size) {
+        int start = (page -1) * size;
+        List<Map<String, Object>> posts = postDao.findAll(start, size);
+        return FormatResultGenerator.genSuccessResult(posts);
+    }
+
+    @Override
     public FormatResult<Admin> login(String username, String password) {
         Admin admin = adminDao.getUserInfoByUsernameAndPassword(username, password);
         if (admin == null){
             return FormatResultGenerator.genErrorResult("用户名或密码错误");
         }
         return FormatResultGenerator.genSuccessResult(admin);
+    }
+
+    @Override
+    public FormatResult<List<Map<String, Object>>> findAllUserByNickname(String pattern) {
+        String p = "%" + pattern + "%";
+        List<Map<String, Object>> users = userDao.findAllByNickname(p);
+        return FormatResultGenerator.genSuccessResult(users);
     }
 
     public FormatResult<Object> changeUserStatus(BigInteger id, int status) {
@@ -63,6 +79,13 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public FormatResult<Integer> getUserPageNum(int size) {
         int num =  userDao.getUserSum();
+        int sum = (num - 1) / size + 1;
+        return FormatResultGenerator.genSuccessResult(sum);
+    }
+
+    @Override
+    public FormatResult<Integer> getPostPageNum(int size) {
+        int num =  postDao.getPostSum();
         int sum = (num - 1) / size + 1;
         return FormatResultGenerator.genSuccessResult(sum);
     }

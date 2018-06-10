@@ -68,8 +68,8 @@ public interface PostDao {
      * 管理员
      * @return
      */
-    @Select("select * from post")
-    List<Map<String, Object>> findAllPost();
+    @Select("select * from post limit #{startIndex}, #{pageSize} ")
+    List<Map<String, Object>> findAll(@Param("startIndex") int  startIndex, @Param("pageSize") int pageSize);
 
 
     /**
@@ -80,4 +80,11 @@ public interface PostDao {
      */
     @Update("update post set status = 0 where user_id = #{userId}")
     int delAllPostByUserId(@Param("userId") BigInteger userId);
+
+    /**
+     * 获得Post总数
+     * @return
+     */
+    @Select("select count(id) from post where status = 1")
+    int getPostSum();
 }

@@ -12,5 +12,4 @@
     (select count(id) todayUser from user where last_login_time = curdate()) todayUser,
     (select count(id) userSum from user) userSum;
     </select>
-
 </mapper>

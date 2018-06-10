@@ -42,7 +42,12 @@ public interface PostService {
 //     */
 //    FormatResult<BigInteger> addPost(Post post);
 //
-//
-//    FormatResult<Object> delPost(BigInteger id);
+
+    /**
+     * 删除Post
+     * @param id
+     * @return
+     */
+    FormatResult<Object> changePostStatus(BigInteger id, int status);
 
 }
