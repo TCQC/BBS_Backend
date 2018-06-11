@@ -14,6 +14,12 @@ public interface AdminService {
      * @return
      */
     FormatResult<Map<String, Object>> getIndexStatus();
+
+    /**
+     * 获得近七天每天发帖数目
+     * @return
+     */
+    FormatResult<Map<String, Object>> getLastWeekStatus();
     /**
      * 查询所有用户列表
      * @param page

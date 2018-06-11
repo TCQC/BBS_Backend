@@ -5,6 +5,7 @@ import com.tcqc.bbs.entity.Block;
 import com.tcqc.bbs.entity.info.BlockInfo;
 import com.tcqc.bbs.service.BlockService;
 import com.tcqc.bbs.util.format.FormatResult;
+import com.tcqc.bbs.util.format.FormatResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +25,19 @@ public class BlockServiceImpl implements BlockService {
 
     @Override
     public FormatResult<Block> getBlockById(BigInteger id) {
-        return null;
+        Block block = blockDao.getBlockById(id);
+        if (block == null){
+            return FormatResultGenerator.genErrorResult("block id 不存在");
+        }
+        return FormatResultGenerator.genSuccessResult(block);
     }
 
     @Override
     public FormatResult<List<BlockInfo>> findAllBlockInfo() {
-        return null;
+        List<BlockInfo> blockInfos = blockDao.findAllBlockInfo();
+        if (blockInfos == null){
+            return FormatResultGenerator.genErrorResult("block id 不存在");
+        }
+        return FormatResultGenerator.genSuccessResult(blockInfos);
     }
 }

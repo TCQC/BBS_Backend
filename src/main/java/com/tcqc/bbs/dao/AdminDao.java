@@ -32,4 +32,10 @@ public interface AdminDao {
      *
      */
     Map<String, Object> getBasicInfoForBackend();
+
+    /**
+     * 得到最近7天得到的注册用户
+     * @return 最近7天发帖数量
+     */
+    Map<String, Object> getLastWeekStatus();
 }

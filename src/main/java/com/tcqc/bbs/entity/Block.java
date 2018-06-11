@@ -13,6 +13,8 @@ public class Block {
     private BigInteger id;
     //版块名称
     private String name;
+    // 版块图标
+    private String icon;
     //版块的描述信息
     private String description;
     //版块的状态
@@ -40,6 +42,14 @@ public class Block {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getDescription() {
@@ -87,11 +97,12 @@ public class Block {
         return "Block{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
-                ", categories=" + categories +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", categories=" + categories +
                 '}';
     }
 }

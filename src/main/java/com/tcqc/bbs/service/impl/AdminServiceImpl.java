@@ -34,6 +34,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public FormatResult<Map<String, Object>> getLastWeekStatus() {
+        Map<String, Object> map = adminDao.getLastWeekStatus();
+        return FormatResultGenerator.genSuccessResult(map);
+    }
+
+    @Override
     public FormatResult<List<Map<String, Object>>> findAllUser(int page, int size) {
         int start = (page - 1) * size;
         List<Map<String, Object>> users = userDao.findAll(start, size);

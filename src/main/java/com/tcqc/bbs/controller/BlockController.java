@@ -1,8 +1,8 @@
 package com.tcqc.bbs.controller;
 
-import com.tcqc.bbs.dao.BlockDao;
 import com.tcqc.bbs.entity.Block;
 import com.tcqc.bbs.entity.info.BlockInfo;
+import com.tcqc.bbs.service.BlockService;
 import com.tcqc.bbs.util.format.FormatResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,12 +16,13 @@ import java.util.List;
 @RestController
 @RequestMapping("block")
 public class BlockController {
-    private BlockDao blockDao;
+    private BlockService blockService;
 
     @Autowired
-    public BlockController(BlockDao blockDao){
-        this.blockDao = blockDao;
+    public BlockController(BlockService blockService) {
+        this.blockService = blockService;
     }
+
 
     /**
      * 查询某个block id 下的所有categories
@@ -30,7 +31,7 @@ public class BlockController {
      */
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public FormatResult<Block> getBlock(@PathVariable(value = "id")BigInteger id){
-        return null;
+        return blockService.getBlockById(id);
     }
 
     /**
@@ -39,6 +40,6 @@ public class BlockController {
      */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public FormatResult<List<BlockInfo>> findAllBlockInfos(){
-        return null;
+        return blockService.findAllBlockInfo();
     }
 }

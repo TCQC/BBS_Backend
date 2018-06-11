@@ -12,4 +12,15 @@
     (select count(id) todayUser from user where last_login_time = curdate()) todayUser,
     (select count(id) userSum from user) userSum;
     </select>
+
+    <select id = "getLastWeekStatus" resultType="java.util.Map">
+    select Mon, Tues, Wen, Thur, Fri, Sat, Sun from
+    (select count(id) Mon from post where DATEDIFF(create_time,now())=-1)Mon,
+    (select count(id) Tues from post where DATEDIFF(create_time,now())=-2)Tues,
+    (select count(id) Wen from post where DATEDIFF(create_time,now())=-3)Wen,
+    (select count(id) Thur from post where DATEDIFF(create_time,now())=-4)Thur,
+    (select count(id) Fri from post where DATEDIFF(create_time,now())=-5)Fri,
+    (select count(id) Sat from post where DATEDIFF(create_time,now())=-6)Sat,
+    (select count(id) Sun from post where DATEDIFF(create_time,now())=-7)Sun;
+  </select>
 </mapper>

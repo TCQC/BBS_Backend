@@ -6,6 +6,7 @@
     <resultMap id="block" type="com.tcqc.bbs.entity.Block">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="icon" column="icon"/>
         <result property="description" column="description"/>
         <collection property="categories" ofType="com.tcqc.bbs.entity.Category">
             <id property="id" column="category_id"/>
@@ -15,8 +16,8 @@
     </resultMap>
 
     <select id ="findAllBlockInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
-      select block.id, block.name , count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
-      (select id, name from block) block,
+      select block.id, block.name, block.icon, count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
+      (select id, name, icon from block) block,
       (select id, block_id from category ) category ,
       (select id, category_id, update_time from post) post
       where block.id = category.block_id and category.id = post.category_id
@@ -24,7 +25,7 @@
     </select>
 
     <select id="getBlockById" resultMap="block">
-      select block.id, block.name, block.description, category.id category_id, category.name category_name, category.description category_description
+      select block.id, block.name, block.icon, block.description, category.id category_id, category.name category_name, category.description category_description
       from block
       left join category on block.id = category.block_id
       where block.id = #{id}

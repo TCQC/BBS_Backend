@@ -45,6 +45,13 @@ public class AdminController {
         return adminService.getIndexStatus();
     }
 
+
+    /**
+     * 得到最近七天的发帖数量
+     */
+    @RequestMapping(value = "status/week", method = RequestMethod.GET)
+    public FormatResult<Map<String, Object>> getWeekStatus(){return adminService.getLastWeekStatus();}
+
     /**
      * 查询用户列表
      * @param page

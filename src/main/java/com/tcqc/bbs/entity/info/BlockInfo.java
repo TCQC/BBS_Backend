@@ -10,6 +10,8 @@ public class BlockInfo {
     private BigInteger id;
     //版块名称
     private String name;
+
+    private String icon;
     //版块拥有的分类数目
     private int categorySum;
     //版块拥有的帖子数目
@@ -59,14 +61,27 @@ public class BlockInfo {
         this.postSum = postSum;
     }
 
+
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+
     @Override
     public String toString() {
         return "BlockInfo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
                 ", categorySum=" + categorySum +
                 ", postSum=" + postSum +
                 ", updateTime=" + updateTime +
                 '}';
     }
+
 }
