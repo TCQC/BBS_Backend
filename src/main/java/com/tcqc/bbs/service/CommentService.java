@@ -1,32 +1,29 @@
 package com.tcqc.bbs.service;
 
-import com.tcqc.bbs.entity.Comment;
 import com.tcqc.bbs.util.format.FormatResult;
 
 import java.math.BigInteger;
-import java.util.List;
 
 public interface CommentService {
     /**
      * 添加评论
-     * @param comment
      * @return 插入主键
      */
-    BigInteger addComment(Comment comment);
+    FormatResult<BigInteger> addComment(BigInteger userId, BigInteger postId, String content);
 
     /**
      * 删除
      * @param id
      * @return
      */
-    int delComment(BigInteger id);
+    FormatResult<Integer> delComment(BigInteger id);
 
-    /**
-     * 分页查询某个post下的评论
-     * @param id
-     * @param page
-     * @return
-     */
-    FormatResult<List<Comment>> findAllCommentByPostId(BigInteger id, int page);
+//    /**
+//     * 分页查询某个post下的评论
+//     * @param id
+//     * @param page
+//     * @return
+//     */
+//    FormatResult<List<Comment>> findAllCommentByPostId(BigInteger id, int page);
 
 }

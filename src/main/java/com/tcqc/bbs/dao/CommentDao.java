@@ -20,7 +20,7 @@ public interface CommentDao {
     int addComment(@Param("comment") Comment comment);
 
     /**
-     * 改变某条回复的状态
+     * 改变某条回评论的状态
      * @param id 评论id
      * @param status 评论的状态 0 为删除，1为恢复
      * @return
@@ -29,24 +29,17 @@ public interface CommentDao {
     int changeStatusById(@Param("id") BigInteger id, @Param("status") int status);
 
 
-    /**
-     * 查询某个帖子的所有回复
-     * @param id 帖子的id
-     * @param startIndex 回复的起始标号
-     * @param pageSize 分页的大小
-     * @return 返回查询到的行数
-     */
-    @Select("select * from comment where post_id = #{id} limit #{startIndex}, #{pageSize}")
-    List<Comment> findAllCommentByPostId(@Param("id")BigInteger id, @Param("startIndex")int startIndex, @Param("pageSize")int pageSize);
+
+
 
 //    /**
-//     * 查询某post下的评论
-//     * @param id
-//     * @param page 页数
-//     * @return
+//     * 查询某个帖子的所有评论
+//     * @param id 帖子的id
+//     * @param startIndex 回复的起始标号
+//     * @param pageSize 分页的大小
+//     * @return 返回查询到的行数
 //     */
-//    @RequestMapping(value = "/post/{id}/page/{page}", method = RequestMethod.GET)
-//    public FormatResult<List<Comment>> findAllCommentByPostId(@PathVariable(value = "id") BigInteger id, @PathVariable(value = "page") int page){
-//        return null;
-//    }
+//    @Select("select * from comment where post_id = #{id} limit #{startIndex}, #{pageSize}")
+//    List<Comment> findAllCommentByPostId(@Param("id")BigInteger id, @Param("startIndex")int startIndex, @Param("pageSize")int pageSize);
+
 }

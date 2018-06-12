@@ -4,11 +4,14 @@ import com.tcqc.bbs.dao.CommentDao;
 import com.tcqc.bbs.entity.Comment;
 import com.tcqc.bbs.service.CommentService;
 import com.tcqc.bbs.util.format.FormatResult;
+import com.tcqc.bbs.util.format.FormatResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
-import java.util.List;
 
+
+@Service
 public class CommentServiceImpl implements CommentService {
     private CommentDao commentDao;
 
@@ -18,17 +21,23 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public BigInteger addComment(Comment comment) {
-        return null;
+    public FormatResult<BigInteger> addComment(BigInteger userId, BigInteger postId, String content) {
+        Comment comment = new Comment();
+        comment.setUserId(userId);
+        comment.setPostId(postId);
+        comment.setContent(content);
+        int id= commentDao.addComment(comment);
+        return FormatResultGenerator.genSuccessResult(comment.getId());
     }
 
     @Override
-    public int delComment(BigInteger id) {
-        return 0;
+    public FormatResult<Integer> delComment(BigInteger id) {
+        commentDao.changeStatusById(id,0);
+        return FormatResultGenerator.genSuccessResult();
     }
 
-    @Override
-    public FormatResult<List<Comment>> findAllCommentByPostId(BigInteger id, int page) {
-        return null;
-    }
+//    @Override
+//    public FormatResult<List<Comment>> findAllCommentByPostId(BigInteger id, int page) {
+//        return null;
+//    }
 }

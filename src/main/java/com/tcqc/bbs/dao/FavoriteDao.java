@@ -1,10 +1,7 @@
 package com.tcqc.bbs.dao;
 
 import com.tcqc.bbs.entity.Favorite;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
@@ -12,6 +9,14 @@ import java.util.List;
 
 @Repository
 public interface FavoriteDao {
+    /**
+     * 添加收藏夹
+     * @param favorite 收藏夹实体
+     * @return
+     */
+    @Insert("insert into favorite(user_id, name) values(#{favorite.userId}, #{favorite.name})")
+    @Options(useGeneratedKeys = true, keyProperty = "favorite.id")
+    int addFavorite(@Param("favorite")Favorite favorite);
     /**
      * 查询用户的收藏夹
      * @param id 用户id
@@ -34,7 +39,7 @@ public interface FavoriteDao {
      * @return
      */
     @Delete("delete favorite where user_id = #{userId}")
-    int delFavoriteByUserid(@Param("userId") BigInteger userId);
+    int delFavoriteByUserId(@Param("userId") BigInteger userId);
 
     /**
      * 更新收藏夹信息（主要就是改名字)

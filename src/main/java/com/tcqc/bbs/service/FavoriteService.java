@@ -2,6 +2,8 @@ package com.tcqc.bbs.service;
 
 import com.tcqc.bbs.entity.Favorite;
 import com.tcqc.bbs.util.format.FormatResult;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -31,8 +33,17 @@ public interface FavoriteService {
 
     /**
      * 添加favorite
-     * @param favorite
+     * @param userId 收藏夹主人
+     * @param name  收藏夹名称
      * @return  成功返回主键
      */
-    FormatResult<BigInteger> addFavorite(Favorite favorite);
+    FormatResult<BigInteger> addFavorite(BigInteger userId, String name);
+
+    /**
+     * 删除用户所有收藏夹
+     * @param userId
+     * @retur
+     */
+
+    FormatResult<Object> delFavoriteByUserId(@Param("userId") BigInteger userId);
 }

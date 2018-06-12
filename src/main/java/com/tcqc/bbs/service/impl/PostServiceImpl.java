@@ -49,9 +49,35 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public FormatResult<BigInteger> addPost(BigInteger userId, BigInteger categoryId, String title, String content) {
+        Post post = new Post();
+        post.setUserId(userId); post.setCategoryId(categoryId);
+        post.setTitle(title); post.setContent(content);
+        postDao.addPost(post);
+        return FormatResultGenerator.genSuccessResult(post.getId());
+    }
+
+    @Override
+    public FormatResult<Object> putPost(BigInteger id,BigInteger userId, BigInteger categoryId, String title, String content) {
+        Post post = new Post();
+        post.setId(id);
+        post.setUserId(userId); post.setCategoryId(categoryId);
+        post.setTitle(title); post.setContent(content);
+        postDao.putPost(post);
+        return FormatResultGenerator.genSuccessResult();
+    }
+
+
+    @Override
     public FormatResult<Object> changePostStatus(BigInteger id, int status) {
         int i =  postDao.changePostStatusById(id, status);
         return FormatResultGenerator.genSuccessResult();
+    }
+
+    @Override
+    public FormatResult<List<PostInfo>> getHotPost() {
+        List<PostInfo> list = postDao.getHotPost();
+        return FormatResultGenerator.genSuccessResult(list);
     }
 
 

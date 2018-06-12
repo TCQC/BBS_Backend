@@ -5,10 +5,7 @@ import com.tcqc.bbs.entity.info.PostInfo;
 import com.tcqc.bbs.service.PostService;
 import com.tcqc.bbs.util.format.FormatResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -62,4 +59,36 @@ public class PostController {
         return postService.getPostById(id);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public FormatResult<BigInteger> addPost(@RequestParam("userId")BigInteger userId,
+                                            @RequestParam("categoryId")BigInteger categoryId,
+                                            @RequestParam("title") String title,
+                                            @RequestParam("content")String content){
+        return postService.addPost(userId, categoryId, title, content);
+    }
+    /**
+     * 更新帖子
+     * @param userId 用户id
+     * @param categoryId 帖子所对应的分类id
+     * @param title 帖子标题
+     * @param content 帖子内容
+     * @return
+     */
+    @RequestMapping(value = "", method = RequestMethod.PUT)
+    public FormatResult<Object> putPost(@RequestParam("id")BigInteger id,
+                                        @RequestParam("userId")BigInteger userId,
+                                        @RequestParam("categoryId")BigInteger categoryId,
+                                        @RequestParam("title") String title,
+                                        @RequestParam("content")String content) {
+        return postService.putPost(id, userId, categoryId, title, content);
+    }
+
+    /**
+     * 获得热门帖子列表
+     * @return
+     */
+    @RequestMapping(value = "hot", method = RequestMethod.GET)
+    public FormatResult<List<PostInfo>> getHotPost(){
+        return postService.getHotPost();
+    }
 }

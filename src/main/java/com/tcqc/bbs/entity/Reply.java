@@ -12,11 +12,14 @@ import java.sql.Timestamp;
 public class Reply {
     //回复ID
     private BigInteger id;
-    //回复者的ID
-    private BigInteger userId;
     //该条回复的回复内容
     private String content;
+    //回复所对应的评论id
+    private BigInteger commentId;
+    //该条回复的回复者id
+    private BigInteger userId;
     //回复的创建时间
+
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //回复的更新时间
@@ -24,14 +27,6 @@ public class Reply {
     private Timestamp updateTime;
     //该条回复的回复者
     private UserInfo userInfo;
-
-    public BigInteger getUserId() {
-        return userId;
-    }
-
-    public void setUserId(BigInteger userId) {
-        this.userId = userId;
-    }
 
     public BigInteger getId() {
         return id;
@@ -72,7 +67,21 @@ public class Reply {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+    public BigInteger getCommentId() {
+        return commentId;
+    }
 
+    public void setCommentId(BigInteger commentId) {
+        this.commentId = commentId;
+    }
+
+    public BigInteger getUserId() {
+        return userId;
+    }
+
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
+    }
     @Override
     public String toString() {
         return "Reply{" +

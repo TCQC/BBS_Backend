@@ -35,13 +35,26 @@ public interface PostService {
      */
     FormatResult<List<PostInfo>> findAllPostByUserId(BigInteger id, int startIndex, int pageSize, String sortType);
 
-    //    /**
-//     * 添加post
-//     * @param post
-//     * @return 成功则返回新建的post id
-//     */
-//    FormatResult<BigInteger> addPost(Post post);
-//
+    /**
+     * 添加Post
+     * @param userId 用户id
+     * @param categoryId 分类id
+     * @param title 标题
+     * @param content 内容
+     * @return
+     */
+    FormatResult<BigInteger> addPost(BigInteger userId, BigInteger categoryId, String title, String content);
+
+
+    /**
+     * 更新实体
+     * @param userId 用户id
+     * @param categoryId 分类id
+     * @param title 标题
+     * @param content 内容
+     * @return
+     */
+    FormatResult<Object>  putPost(BigInteger id, BigInteger userId, BigInteger categoryId, String title, String content);
 
     /**
      * 删除Post
@@ -49,5 +62,11 @@ public interface PostService {
      * @return
      */
     FormatResult<Object> changePostStatus(BigInteger id, int status);
+
+    /**
+     * 得到热门的帖子信息
+     * @return
+     */
+    FormatResult<List<PostInfo>> getHotPost();
 
 }

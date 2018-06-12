@@ -1,8 +1,5 @@
 package com.tcqc.bbs.controller;
-
-
-import com.tcqc.bbs.dao.ReplyDao;
-import com.tcqc.bbs.entity.Reply;
+import com.tcqc.bbs.service.ReplyService;
 import com.tcqc.bbs.util.format.FormatResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,23 +8,27 @@ import java.math.BigInteger;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "reply")
+@RequestMapping(value = "/reply")
 public class ReplyController {
-    private ReplyDao replyDao;
+    private ReplyService replyService;
 
     @Autowired
-    public ReplyController(ReplyDao replyDao) {
-        this.replyDao = replyDao;
+    public ReplyController(ReplyService replyService) {
+        this.replyService = replyService;
     }
 
     /**
-     * 添加
-     * @param reply
+     * 添加回复
+     * @param userId 回复者id
+     * @param commentId  回复的评论id
+     * @param content 回复内容
      * @return
      */
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public FormatResult<Object> addReply(@RequestBody Reply reply){
-        return null;
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public FormatResult<Object> addReply(@RequestParam("userId") BigInteger userId,
+                                         @RequestParam("commentId")BigInteger commentId,
+                                         @RequestParam("content")String content){
+        return replyService.addReply(userId, commentId, content);
     }
 
     /**
@@ -35,8 +36,8 @@ public class ReplyController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/del/id/{id}", method = RequestMethod.PUT)
     public FormatResult<Object> delReply(@PathVariable(value = "id")BigInteger id){
-        return null;
+        return replyService.delReply(id, 0);
     }
 }

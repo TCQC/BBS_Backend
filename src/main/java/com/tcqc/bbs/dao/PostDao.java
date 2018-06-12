@@ -97,4 +97,20 @@ public interface PostDao {
      */
     @Select("select count(id) from post where status = 1")
     int getPostSum();
+
+    /**
+     * 得到热门帖子的信息
+     * @return
+     */
+    @Select("select p.id id, p.title title, p.status status from post p where (p.status = 2 or p.status = 3)")
+    List<PostInfo> getHotPost();
+
+    /**
+     * 查看某个用户所有的提问的帖子
+     * @param id 用户id
+     * @param starIndex 页码
+     * @param pageSize 每页的大小
+     * @return 提问的帖子信息列表
+     */
+    List<PostInfo>findQuestionByUserId(@Param("id")BigInteger id,@Param("startIndex")int starIndex, @Param("pageSize")int pageSize);
 }
