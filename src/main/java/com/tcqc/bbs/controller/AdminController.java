@@ -67,8 +67,8 @@ public class AdminController {
      * @param nickname
      * @return
      */
-    @RequestMapping(value = "/user/nickname/{nickname}", method = RequestMethod.GET)
-    public FormatResult<List<Map<String, Object>>> searchUserByNickname(@PathVariable(value = "nickname") String nickname){
+    @RequestMapping(value = "/user/nickname", method = RequestMethod.GET)
+        public FormatResult<List<Map<String, Object>>> searchUserByNickname(@RequestParam(value = "nickname") String nickname){
         return adminService.findAllUserByNickname(nickname);
     }
     /**
@@ -98,7 +98,7 @@ public class AdminController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "user/id/{id}/", method = RequestMethod.PUT)
+    @RequestMapping(value = "user/id/{id}", method = RequestMethod.PUT)
     public FormatResult<Object> recUser(@PathVariable(value = "id")BigInteger id){
         return adminService.changeUserStatus(id, 1);
         // 恢复用户所有发帖
@@ -123,13 +123,39 @@ public class AdminController {
     }
 
     /**
-     * 恢复用户
+     * 编辑帖子status 删除/恢复
      * @param id
      * @return
      */
     @RequestMapping(value = "post/id/{id}/status/{status}", method = RequestMethod.PUT)
     public FormatResult<Object> changePostStatus(@PathVariable(value = "id")BigInteger id, @PathVariable(value = "status")int status){
         return postService.changePostStatus(id, status);
+    }
+
+    /**
+     * 获取版块列表 管理员
+     * @return
+     */
+    @RequestMapping(value = "block", method = RequestMethod.GET)
+    public FormatResult<List<Map<String, Object>>> findBlock(){
+        return adminService.findAll();
+    }
+
+    /**
+     * 添加版块
+     * @param name
+     * @param icon
+     * @param description
+     * @return
+     */
+    @RequestMapping(value = "block", method = RequestMethod.POST)
+    public FormatResult<Object> addBlock(@RequestParam(value = "name")String name, @RequestParam(value = "icon")String icon, @RequestParam(value = "description")String description, @RequestParam(value = "adminId") BigInteger id){
+        return adminService.addBlock(name, icon ,description, id);
+    }
+
+    @RequestMapping(value = "block/id/{id}", method = RequestMethod.DELETE)
+    public FormatResult<Object> delBlock(@PathVariable(value = "id")BigInteger id){
+        return adminService.delBlock(id);
     }
 
 

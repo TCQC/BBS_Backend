@@ -16,7 +16,7 @@ public interface BlockDao {
      * 管理员用
      * @return
      */
-    @Select("select * from block")
+    @Select("select * from block where status = 1")
     List<Map<String, Object>> findAll();
 
     /**
@@ -43,13 +43,14 @@ public interface BlockDao {
 
 
     /**
-     * 添加一个版块信息
-     * @param block block对象
+     * 添加版块
+     * @param name
+     * @param icon
+     * @param description
      * @return
      */
-    @Insert("insert into block(name, description) values(#{block.name}, #{block.description})")
-    @Options(useGeneratedKeys = true, keyProperty = "block.id")
-    int addBlock(@Param("block") Block block);
+    @Insert("insert into block(name, icon, description, admin_user_id) values(#{name}, #{icon}, #{description}, #{admin_user_id})")
+    int addBlock(@Param("name")String name, @Param("icon") String icon, @Param("description")String description, @Param("admin_user_id")BigInteger id);
 
     /**
      * 更新版块信息

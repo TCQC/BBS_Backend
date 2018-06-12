@@ -11,12 +11,12 @@ import org.springframework.web.servlet.config.annotation.*;
  */
 @Configuration
 public class WebMvcConf implements WebMvcConfigurer {
-//    private String imgPath = "/home/tuanzi/bbs-backend/upload/";
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        // 使用外部文件夹
-//        registry.addResourceHandler("/img/**").addResourceLocations("file:" + imgPath).addResourceLocations("classpath:/static/");;
-//    }
+    private String imgPath = "/home/tuanzi/bbs/upload/";
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 使用外部文件夹
+        registry.addResourceHandler("/img/**").addResourceLocations("file:" + imgPath);
+    }
 
     /**
      * 全局允许跨域请求

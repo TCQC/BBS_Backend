@@ -33,6 +33,8 @@ public class UserServiceImpl implements UserService {
         UserInfo userInfo = userDao.getUserInfoById(id);
         if (userInfo == null){
             return FormatResultGenerator.genErrorResult("用户ID不存在");
+        } else if (userInfo.getStatus() == 0){
+            return FormatResultGenerator.genErrorResult("该用户已被拉黑");
         }
         return FormatResultGenerator.genSuccessResult(userInfo);
     }
@@ -49,8 +51,6 @@ public class UserServiceImpl implements UserService {
         UserInfo userInfo = userDao.getUserInfoByUsernameAndPassword(username, password);
         return  FormatResultGenerator.genSuccessResult(userInfo);
     }
-
-
 
 
 

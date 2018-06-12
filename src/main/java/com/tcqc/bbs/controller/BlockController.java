@@ -4,11 +4,9 @@ import com.tcqc.bbs.entity.Block;
 import com.tcqc.bbs.entity.info.BlockInfo;
 import com.tcqc.bbs.service.BlockService;
 import com.tcqc.bbs.util.format.FormatResult;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -42,4 +40,6 @@ public class BlockController {
     public FormatResult<List<BlockInfo>> findAllBlockInfos(){
         return blockService.findAllBlockInfo();
     }
+
+
 }

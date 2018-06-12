@@ -59,6 +59,16 @@ public interface PostDao {
     List<PostInfo> findAllPostInfoByCategoryId(@Param("id")BigInteger id, @Param("startIndex")int startIndex,@Param("pageSize")int pageSize, @Param("sortType")String  sortType);
 
     /**
+     * 查询某block下所有帖子信息
+     * @param id
+     * @param startIndex
+     * @param pageSize
+     * @param sortType
+     * @return
+     */
+    List<PostInfo> findAllPostInfoByBlockId(@Param("id")BigInteger id, @Param("startIndex")int startIndex,@Param("pageSize")int pageSize, @Param("sortType")String  sortType);
+
+    /**
      * 根据帖子Id查看某条帖子的详细信息
      */
     Post getPostById(@Param("id")BigInteger id);

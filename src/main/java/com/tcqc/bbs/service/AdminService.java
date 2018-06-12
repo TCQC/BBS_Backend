@@ -61,10 +61,24 @@ public interface AdminService {
 
     /**
      * 添加版块
-     * @param block 版块信息（主要就一个名字)
+     * @param name
+     * @param icon
+     * @param description
      * @return
      */
-    FormatResult<Object> addBlock(Block block);
+    FormatResult<Object> addBlock(String name, String icon, String description, BigInteger id);
+
+    /**
+     * 删除Block Status 置0
+     * @param id
+     * @return
+     */
+    FormatResult<Object> delBlock(BigInteger id);
+    /**
+     * 查询所有block信息
+     * @return
+     */
+    FormatResult<List<Map<String, Object>>> findAll();
 
     /**
      * 得到用户页面数

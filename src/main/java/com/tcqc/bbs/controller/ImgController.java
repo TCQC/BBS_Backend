@@ -1,5 +1,7 @@
 package com.tcqc.bbs.controller;
 
+import com.tcqc.bbs.util.format.FormatResult;
+import com.tcqc.bbs.util.format.FormatResultGenerator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,4 +37,31 @@ public class ImgController {
             return "file is empty";
         }
     }
+
+    @RequestMapping(value = "/block",method = RequestMethod.POST)
+    public FormatResult<String> uploadBlockIcon(@RequestParam(value="file")MultipartFile file) {
+        String name = System.currentTimeMillis() + "";
+        if (!file.isEmpty()) {
+            try {
+                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File( "upload/block/" + name + ".jpg")));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                String error =  "error," + e.getMessage();
+                return FormatResultGenerator.genErrorResult(error);
+            } catch (IOException e) {
+                e.printStackTrace();
+                String error =  "error," + e.getMessage();
+                return FormatResultGenerator.genErrorResult(error);
+            }
+            String result =  "http://localhost:8080/img/block/" + name + ".jpg";
+
+            return FormatResultGenerator.genSuccessResult(result);
+        } else {
+            return null;
+        }
+    }
+
 }

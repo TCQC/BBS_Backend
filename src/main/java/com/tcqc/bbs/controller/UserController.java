@@ -3,13 +3,13 @@ package com.tcqc.bbs.controller;
 import com.tcqc.bbs.entity.info.UserInfo;
 import com.tcqc.bbs.service.AuthenticationService;
 import com.tcqc.bbs.service.UserService;
+import com.tcqc.bbs.util.authentication.TokenRequired;
 import com.tcqc.bbs.util.format.FormatResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "user")
 public class UserController {

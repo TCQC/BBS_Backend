@@ -1,6 +1,7 @@
 package com.tcqc.bbs.dao;
 
 import com.tcqc.bbs.entity.Post;
+import com.tcqc.bbs.entity.info.PostInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -35,5 +37,12 @@ public class PostDaoTest {
             id = BigInteger.valueOf(i);
             postDao.changePostStatusById(id, 1);
         }
+    }
+
+    @Test
+    public void findAllPostInfoByBlockId() {
+        BigInteger id = BigInteger.valueOf(6);
+        List<PostInfo> test = postDao.findAllPostInfoByBlockId(id,0, 10, "update_time");
+        System.out.println(test);
     }
 }

@@ -1,5 +1,6 @@
 package com.tcqc.bbs.dao;
 
+import com.tcqc.bbs.entity.User;
 import com.tcqc.bbs.entity.info.UserInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -51,6 +52,14 @@ public interface UserDao {
      * @return 用户信息
      */
     UserInfo getUserInfoById(@Param("id") BigInteger id);
+
+    /**
+     * 根据用户ID 查询信息
+     * @param id
+     * @return 用户信息
+     */
+    @Select("select * from user where id = #{id}")
+    User getUserById(@Param("id") BigInteger id);
 
     // 更新用户信息 参数应该是简单的基础列
 //    int putUserInfo(UserInfo userInfo);

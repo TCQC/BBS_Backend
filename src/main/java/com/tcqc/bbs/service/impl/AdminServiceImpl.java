@@ -1,10 +1,10 @@
 package com.tcqc.bbs.service.impl;
 
 import com.tcqc.bbs.dao.AdminDao;
+import com.tcqc.bbs.dao.BlockDao;
 import com.tcqc.bbs.dao.PostDao;
 import com.tcqc.bbs.dao.UserDao;
 import com.tcqc.bbs.entity.Admin;
-import com.tcqc.bbs.entity.Block;
 import com.tcqc.bbs.service.AdminService;
 import com.tcqc.bbs.util.format.FormatResult;
 import com.tcqc.bbs.util.format.FormatResultGenerator;
@@ -20,12 +20,14 @@ public class AdminServiceImpl implements AdminService {
     private UserDao userDao;
     private AdminDao adminDao;
     private PostDao postDao;
+    private BlockDao blockDao;
 
     @Autowired
-    public AdminServiceImpl(UserDao userDao, AdminDao adminDao, PostDao postDao) {
+    public AdminServiceImpl(UserDao userDao, AdminDao adminDao, PostDao postDao, BlockDao blockDao) {
         this.userDao = userDao;
         this.adminDao = adminDao;
         this.postDao = postDao;
+        this.blockDao = blockDao;
     }
 
     @Override
@@ -78,9 +80,28 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public FormatResult<Object> addBlock(Block block) {
-        return null;
+    public FormatResult<Object> addBlock(String name, String icon, String description, BigInteger id) {
+        int i  =  blockDao.addBlock(name, icon, description, id);
+        if (i == 0){
+            return FormatResultGenerator.genErrorResult("无法创建block");
+        }
+        return FormatResultGenerator.genSuccessResult();
     }
+
+    @Override
+    public FormatResult<Object> delBlock(BigInteger id) {
+        int i = blockDao.changeStatusById(id,0);
+        if (i == 0)
+            return FormatResultGenerator.genErrorResult("无法删除ID: " + id);
+        return FormatResultGenerator.genSuccessResult();
+    }
+
+    @Override
+    public FormatResult<List<Map<String, Object>>> findAll() {
+        List<Map<String, Object>> list = blockDao.findAll();
+        return FormatResultGenerator.genSuccessResult(list);
+    }
+
 
     @Override
     public FormatResult<Integer> getUserPageNum(int size) {

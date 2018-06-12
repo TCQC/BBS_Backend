@@ -6,6 +6,7 @@ import com.tcqc.bbs.util.format.FormatResult;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 public interface BlockService {
     /**
@@ -20,6 +21,10 @@ public interface BlockService {
      * @return
      */
     FormatResult<List<BlockInfo>> findAllBlockInfo();
+
+
+
+
 
 
 }

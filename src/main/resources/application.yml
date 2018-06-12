@@ -1,9 +1,11 @@
 server:
   port: 8080
+  tomcat:
+    uri-encoding: utf-8
 
 spring:
     datasource:
-        name: mysql_test
+        name: tcqc
         type: com.alibaba.druid.pool.DruidDataSource
         #druid相关配置
         druid:
@@ -31,9 +33,17 @@ spring:
           #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
           pool-prepared-statements: false
           max-pool-prepared-statement-per-connection-size: 20
+    servlet:
+      multipart:
+        max-file-size: 10MB
+        max-request-size: 10MB
+    http:
+      encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
 
 mybatis:
         mapper-locations: classpath:mapper/*.xml
         config-location: classpath:mybatis.xml
         type-aliases-package: com.tcqc.bbs.entity
-
