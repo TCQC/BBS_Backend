@@ -17,7 +17,7 @@ public interface CategoryDao {
     List<Category> findAll();
 
     @Select("select * from category where status = 1 and block_id = #{blockId}")
-    List<Category> findAllByBlockId(BigInteger id);
+    List<Category> findAllByBlockId(@Param("blockId") BigInteger id);
 
     @Insert("insert into category (block_id, name, description) value (#{blockId}, #{name}, #{description})")
     int addCategory(@Param(value = "blockId")BigInteger id, @Param(value = "name")String name, @Param(value = "description")String description);
