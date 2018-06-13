@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -34,6 +36,11 @@ public class CommentServiceImpl implements CommentService {
     public FormatResult<Integer> delComment(BigInteger id) {
         commentDao.changeStatusById(id,0);
         return FormatResultGenerator.genSuccessResult();
+    }
+
+    @Override
+    public FormatResult<List<Map<String, Object>>> getAllCommentByUserId(BigInteger userId) {
+        return FormatResultGenerator.genSuccessResult(commentDao.getAllCommentByUserId(userId));
     }
 
 //    @Override

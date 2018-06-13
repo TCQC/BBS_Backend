@@ -26,10 +26,11 @@ public interface FavoriteService {
     /**
      * 更新favorite
      * 能更新的属性只有名称
+     * @param id 收藏夹id
      * @param name
      * @return 插入信息，成功则genSucess , 否则genError
      */
-    FormatResult<Object> putFavorite(String name);
+    FormatResult<Object> putFavorite(BigInteger id, String name);
 
     /**
      * 添加favorite
@@ -44,6 +45,5 @@ public interface FavoriteService {
      * @param userId
      * @retur
      */
-
     FormatResult<Object> delFavoriteByUserId(@Param("userId") BigInteger userId);
 }

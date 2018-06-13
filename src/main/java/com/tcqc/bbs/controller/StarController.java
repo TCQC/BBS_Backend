@@ -1,7 +1,7 @@
 package com.tcqc.bbs.controller;
 
-import com.tcqc.bbs.dao.StarDao;
 import com.tcqc.bbs.entity.Star;
+import com.tcqc.bbs.service.StarService;
 import com.tcqc.bbs.util.format.FormatResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigInteger;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "star")
 public class StarController {
-    private StarDao starDao;
+    private StarService starService;
 
     @Autowired
-    public StarController(StarDao starDao) {
-        this.starDao = starDao;
+    public StarController(StarService starService) {
+        this.starService = starService;
     }
 
     /**
      * 添加收藏
-     * @param star
+     * @param collectionId 收藏夹id
+     * @param postId     帖子id
      * @return
      */
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public FormatResult<Object> addStar(@RequestBody Star star){
-        return null;
+    public FormatResult<BigInteger> addStar(@RequestParam("collectionId") BigInteger collectionId, @RequestParam("postId") BigInteger postId){
+        return starService.addStar(postId, collectionId);
     }
 
     /**
@@ -36,8 +36,9 @@ public class StarController {
      * @return
      */
     @RequestMapping(value = "id/{id}", method = RequestMethod.DELETE)
-    public FormatResult<Object> delStar(@PathVariable(value = "id")BigInteger id){
-        return null;
+    public FormatResult<BigInteger> delStar(@PathVariable(value = "id")BigInteger id)
+    {
+        return starService.delStar(id);
     }
 
     /**
@@ -45,8 +46,8 @@ public class StarController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "favorite/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "favorite/{id}", method = RequestMethod.GET)
     public FormatResult<List<Star>> findAllStar(@PathVariable(value = "id")BigInteger id){
-        return null;
+        return starService.findAllStarByFavoriteId(id);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -30,6 +31,12 @@ public class CategoryServiceImpl implements CategoryService {
     public FormatResult<List<Category>> findAllByBlockId(BigInteger id) {
         List<Category> categories = categoryDao.findAllByBlockId(id);
         return FormatResultGenerator.genSuccessResult(categories);
+    }
+
+    @Override
+    public FormatResult<Map<String, Object>> getCategoryById(BigInteger id) {
+        Map<String, Object> result = categoryDao.getCategoryById(id);
+        return FormatResultGenerator.genSuccessResult(result);
     }
 
     @Override

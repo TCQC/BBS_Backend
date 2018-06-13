@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface CommentDao {
@@ -28,7 +29,16 @@ public interface CommentDao {
     @Update("update comment set status = #{status} where id = #{id}")
     int changeStatusById(@Param("id") BigInteger id, @Param("status") int status);
 
-
+    /**
+     * 查询某个用户所有的回复
+     * @param userId
+     * @return
+     */
+    @Select("select p.id p_id, p.title p_title, c.content\n" +
+            "from (select user_id, post_id, content from comment) c left join\n" +
+            "(select id, title from post) p on c.post_id = p.id\n" +
+            "where c.user_id = #{userId}")
+    List<Map<String, Object>> getAllCommentByUserId(@Param("userId")BigInteger userId);
 
 
 

@@ -22,7 +22,7 @@ public interface FavoriteDao {
      * @param id 用户id
      * @return 收藏夹列表
      */
-    @Select("select * from favorite where id = #{id}")
+    @Select("select * from favorite where user_id = #{id}")
     List<Favorite> findFavoriteByUserId(@Param("id") BigInteger id);
 
     /**
@@ -30,7 +30,7 @@ public interface FavoriteDao {
      * @param id
      * @return
      */
-    @Delete("delete favorite where id = #{id}")
+    @Delete("delete from favorite where id = #{id}")
     int delFavoriteById(@Param("id") BigInteger id);
 
     /**
@@ -38,7 +38,7 @@ public interface FavoriteDao {
      * @param userId
      * @return
      */
-    @Delete("delete favorite where user_id = #{userId}")
+    @Delete("delete from favorite where user_id = #{userId}")
     int delFavoriteByUserId(@Param("userId") BigInteger userId);
 
     /**
@@ -46,6 +46,6 @@ public interface FavoriteDao {
      * @param favorite
      * @return
      */
-    @Update("update favorite ")
-    int putFavorite(Favorite favorite);
+    @Update("update favorite set favorite.name = #{favorite.name} where favorite.id = #{favorite.id}")
+    int putFavorite(@Param("favorite") Favorite favorite);
 }

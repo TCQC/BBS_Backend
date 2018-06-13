@@ -5,6 +5,7 @@ import com.tcqc.bbs.util.format.FormatResult;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 public interface CategoryService {
     /**
@@ -18,6 +19,13 @@ public interface CategoryService {
      * @return
      */
     FormatResult<List<Category>> findAllByBlockId(BigInteger id);
+
+    /**
+     * 查询某个版块的信息
+     * @param id
+     * @return
+     */
+    FormatResult<Map<String, Object>> getCategoryById(BigInteger id);
 
     /**
      * 添加版块

@@ -26,6 +26,16 @@ public interface PostService {
     FormatResult<List<PostInfo>> findAllPostByCategoryId(BigInteger id, int startIndex, int pageSize, String sortType);
 
     /**
+     * 查询某个block下的所有post
+     * @param blockId 版块id
+     * @param startIndex 开始
+     * @param pageSize 页面大小
+     * @param sortType 排序方式
+     * @return
+     */
+    FormatResult<List<PostInfo>> findAllPostByBlockId(BigInteger blockId, int startIndex, int pageSize, String sortType);
+
+    /**
      * 查询某个用户下的所有post
      * @param id category id
      * @param startIndex 开始

@@ -3,6 +3,8 @@ package com.tcqc.bbs.service;
 import com.tcqc.bbs.util.format.FormatResult;
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
 
 public interface CommentService {
     /**
@@ -18,6 +20,12 @@ public interface CommentService {
      */
     FormatResult<Integer> delComment(BigInteger id);
 
+    /**
+     * 根据UserId查找所有的评论
+     * @param userId
+     * @return
+     */
+    FormatResult<List<Map<String, Object>>> getAllCommentByUserId(BigInteger userId);
 //    /**
 //     * 分页查询某个post下的评论
 //     * @param id

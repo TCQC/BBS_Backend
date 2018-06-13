@@ -91,4 +91,17 @@ public class PostController {
     public FormatResult<List<PostInfo>> getHotPost(){
         return postService.getHotPost();
     }
+
+    /**
+     * 获取某个版块的所有帖子
+     * @param id 版块id
+     * @param page 页数
+     * @param sort 排序条件
+     * @return
+     */
+    @RequestMapping(value = "/block/{id}/page/{page}/{sort}", method = RequestMethod.GET)
+    public FormatResult<List<PostInfo>> findAllPostByBlockId(@PathVariable("id")BigInteger id, @PathVariable("page") int page, @PathVariable("sort") String sort){
+        int startIndex = (page - 1) * pageSize;
+        return postService.findAllPostByBlockId(id, startIndex, pageSize, sort);
+    }
 }

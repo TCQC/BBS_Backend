@@ -40,6 +40,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public FormatResult<List<PostInfo>> findAllPostByBlockId(BigInteger blockId, int startIndex, int pageSize, String sortType) {
+        List<PostInfo> postInfos = postDao.findAllPostInfoByBlockId(blockId, startIndex, pageSize, sortType);
+        if(postInfos == null){
+            return FormatResultGenerator.genErrorResult("block is not exist");
+        }
+        return FormatResultGenerator.genSuccessResult(postInfos);
+    }
+
+    @Override
     public FormatResult<List<PostInfo>> findAllPostByUserId(BigInteger id, int startIndex, int pageSize, String sortType) {
         List<PostInfo> postInfos = postDao.findAllPostInfoByUserId(id, startIndex, pageSize, sortType);
         if (postInfos == null){

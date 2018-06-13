@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "category")
@@ -30,6 +31,15 @@ public class CategoryController {
     @RequestMapping(value = "block/{id}", method = RequestMethod.GET)
     public FormatResult<List<Category>> findCategoriesByBlockId(@PathVariable(value = "id")BigInteger id){
         return categoryService.findAllByBlockId(id);
+    }
+
+    /**
+     * 查询所有分类列表
+     * @return
+     */
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public FormatResult<Map<String, Object>> getCategory(@PathVariable(value = "id")BigInteger id){
+        return categoryService.getCategoryById(id);
     }
 
     /**

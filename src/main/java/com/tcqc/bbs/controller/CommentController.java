@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/comment")
@@ -19,17 +21,6 @@ public class CommentController {
     }
 
     /**
-     * 删除评论
-     * @param id
-     * @return
-     */
-//    @TokenRequired
-    @RequestMapping(value = "/del/id/{id}", method = RequestMethod.DELETE)
-    public FormatResult<Integer> delComment(@PathVariable(value = "id")BigInteger id){
-        return commentService.delComment(id);
-    }
-
-    /**
      *
      * @param userId 用户id
      * @param postId 分类id
@@ -37,9 +28,24 @@ public class CommentController {
      * @return
      */
     //    @TokenRequired
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public FormatResult<BigInteger> addComment(@RequestParam("userId") BigInteger userId, @RequestParam("postId") BigInteger postId, @RequestParam("content") String content){
         return commentService.addComment(userId,postId,content);
+    }
+    /**
+     * 删除评论
+     * @param id
+     * @return
+     */
+//    @TokenRequired
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
+    public FormatResult<Integer> delComment(@PathVariable(value = "id")BigInteger id){
+        return commentService.delComment(id);
+    }
+
+    @RequestMapping(value = "/user/id/{id}",  method = RequestMethod.GET)
+    public FormatResult<List<Map<String, Object>>> getAllCommentByUserId(@PathVariable("id") BigInteger id){
+        return commentService.getAllCommentByUserId(id);
     }
 
 

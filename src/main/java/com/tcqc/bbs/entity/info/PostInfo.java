@@ -15,6 +15,8 @@ public class PostInfo {
     private String title;
     //帖子主人的昵称
     private String nickname;
+
+    private String avatar;
     //帖子的状态
     private int status;
     //帖子的评论量
@@ -47,6 +49,16 @@ public class PostInfo {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public int getStatus() {
@@ -82,15 +94,17 @@ public class PostInfo {
     }
 
     @Override
-    public String  toString() {
+    public String toString() {
         return "PostInfo{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", status='" + status + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", status=" + status +
                 ", commentSum=" + commentSum +
                 ", favoriteSum=" + favoriteSum +
                 ", updateTime=" + updateTime +
                 '}';
     }
+
 }
