@@ -12,6 +12,8 @@ public class UserInfo {
     private BigInteger id;
     // 用户昵称
     private String nickname;
+
+    private String gender;
     // 头像
     private String avatar;
     // 用户经验值
@@ -43,6 +45,14 @@ public class UserInfo {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getExp() {
@@ -109,11 +119,13 @@ public class UserInfo {
     public void setWorkPlace(String workPlace) {
         this.workPlace = workPlace;
     }
+
     @Override
     public String toString() {
         return "UserInfo{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
+                ", gender='" + gender + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", exp=" + exp +
                 ", rank='" + rank + '\'' +

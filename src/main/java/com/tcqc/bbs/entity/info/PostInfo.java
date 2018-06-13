@@ -13,6 +13,7 @@ public class PostInfo {
     private BigInteger id;
     //帖子的标题
     private String title;
+    private BigInteger userId;
     //帖子主人的昵称
     private String nickname;
 
@@ -33,6 +34,14 @@ public class PostInfo {
 
     public void setId(BigInteger id) {
         this.id = id;
+    }
+
+    public BigInteger getUserId() {
+        return userId;
+    }
+
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -98,6 +107,7 @@ public class PostInfo {
         return "PostInfo{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", userId=" + userId +
                 ", nickname='" + nickname + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", status=" + status +
@@ -106,5 +116,4 @@ public class PostInfo {
                 ", updateTime=" + updateTime +
                 '}';
     }
-
 }
