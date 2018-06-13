@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.*;
  */
 @Configuration
 public class WebMvcConf implements WebMvcConfigurer {
-    private String imgPath = "/home/tuanzi/bbs/upload/";
+    private String imgPath = "/home/tu anzi/bbs/upload/";
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 使用外部文件夹
