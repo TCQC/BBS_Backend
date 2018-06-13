@@ -12,7 +12,7 @@
      left join (select id, post_id, status from comment where status = 1 ) c on c.post_id = p.id
       where p.category_id=#{id}
      group by p.id
-     order by ${sortType}
+     order by status desc, ${sortType} desc
      limit #{startIndex}, #{pageSize};
     </select>
 
@@ -26,7 +26,7 @@ select p.id id, p.title title, u.id userId, u.nickname nickname, u.avatar avatar
      left join (select id, block_id from category where status = 1) cc on p.category_id = cc.id
      where  cc.block_id = #{id}
      group by p.id
-     order by ${sortType}
+     order by status desc, ${sortType} desc
      limit #{startIndex}, #{pageSize};
 
     </select>
@@ -39,7 +39,7 @@ select p.id id, p.title title, u.id userId, u.nickname nickname, u.avatar avatar
      left join (select id, post_id, status from comment where status = 1) c on c.post_id = p.id
      where u.id=#{id}
      group by p.id
-     order by ${sortType}
+     order by status desc, ${sortType} desc
      limit #{startIndex}, #{pageSize};
     </select>
 
@@ -52,7 +52,7 @@ select p.id id, p.title title, u.id userId, u.nickname nickname, u.avatar avatar
      left join (select id, post_id, status from comment where status = 1) c on c.post_id = p.id
      where favorite.id = #{id} and star.favorite_id = favorite.id and star.post_id = p.id
      group by p.id
-     order by ${sortType}
+     order by status desc, ${sortType} desc
      limit #{startIndex}, #{pageSize};
     </select>
 

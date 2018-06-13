@@ -30,4 +30,6 @@ public interface UserService {
      * @return
      */
     FormatResult<UserInfo> register(String nickname, String username, String password);
+
+    FormatResult<Object> putUserInfo(BigInteger id, String avatar, String gender, String workplace, String description);
 }

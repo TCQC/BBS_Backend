@@ -18,7 +18,7 @@ import java.io.*;
 public class ImgController {
 
     @RequestMapping(value = "/avatar",method = RequestMethod.POST)
-    public String testImg(@RequestParam(value = "name") String name,@RequestParam(value="file")MultipartFile file) {
+    public FormatResult<String> uploadAvatar(@RequestParam(value = "name") String name, @RequestParam(value="file")MultipartFile file) {
         if (!file.isEmpty()) {
             try {
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File( "upload/avatar/" + name + ".jpg")));
@@ -27,14 +27,17 @@ public class ImgController {
                 out.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                return "error," + e.getMessage();
+                String error =  "error," + e.getMessage();
+                return FormatResultGenerator.genErrorResult(error);
             } catch (IOException e) {
                 e.printStackTrace();
-                return "error," + e.getMessage();
+                String error =  "error," + e.getMessage();
+                return FormatResultGenerator.genErrorResult(error);
             }
-            return "localhost:8080/img/avatar/" + name + ".jpg";
+            String result =  "http://localhost:8080/img/avatar/" + name + ".jpg";
+            return FormatResultGenerator.genSuccessResult(result);
         } else {
-            return "file is empty";
+            return null;
         }
     }
 

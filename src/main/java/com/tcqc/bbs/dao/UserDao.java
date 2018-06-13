@@ -61,8 +61,17 @@ public interface UserDao {
     @Select("select * from user where id = #{id}")
     User getUserById(@Param("id") BigInteger id);
 
-    // 更新用户信息 参数应该是简单的基础列
-//    int putUserInfo(UserInfo userInfo);
+    /**
+     * 更新用户信息
+     * @param id
+     * @param avatar
+     * @param gender
+     * @param workplace
+     * @param description
+     * @return
+     */
+    @Update("update user set avatar = #{avatar}, gender = #{gender}, workplace = #{workplace}, description = #{description} where id = #{id}")
+    int putUserInfo(@Param("id")BigInteger id, @Param("avatar")String avatar, @Param("gender")String gender, @Param("workplace")String workplace, @Param("description")String description);
 
 
     /**
@@ -73,6 +82,11 @@ public interface UserDao {
     @Select("select * from user limit #{startIndex}, #{pageSize}")
     List<Map<String, Object>> findAll(@Param("startIndex") int  startIndex, @Param("pageSize") int pageSize);
 
+    /**
+     * 模糊匹配查询用户
+     * @param pattern
+     * @return
+     */
     @Select("select * from user where nickname like #{nickname}")
     List<Map<String, Object>> findAllByNickname(@Param("nickname") String pattern);
 

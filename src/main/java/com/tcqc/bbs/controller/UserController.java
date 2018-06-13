@@ -5,10 +5,12 @@ import com.tcqc.bbs.service.AuthenticationService;
 import com.tcqc.bbs.service.UserService;
 import com.tcqc.bbs.util.authentication.TokenRequired;
 import com.tcqc.bbs.util.format.FormatResult;
+import com.tcqc.bbs.util.format.FormatResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "user")
@@ -69,4 +71,12 @@ public class UserController {
         return userInfoFormatResult;
     }
 
+    @RequestMapping(value = "", method = RequestMethod.PUT)
+    public FormatResult<Object> putUserInfo(@RequestParam("id")BigInteger id,
+                                            @RequestParam("gender")String gender,
+                                            @RequestParam("avatar") String avatar,
+                                            @RequestParam("workPlace")String workplace,
+                                            @RequestParam("description")String description){
+        return userService.putUserInfo(id,  avatar, gender, workplace, description);
+    }
 }
