@@ -22,4 +22,10 @@ public class BlockDaoTest {
         Block block = blockDao.getBlockById(id);
         System.out.println(block);
     }
+
+    @Test
+    public void putBlock() {
+        BigInteger id = BigInteger.valueOf(7);
+        int i = blockDao.putBlock(id, "test change", "","", id);
+    }
 }

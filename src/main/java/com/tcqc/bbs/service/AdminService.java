@@ -69,6 +69,16 @@ public interface AdminService {
     FormatResult<Object> addBlock(String name, String icon, String description, BigInteger id);
 
     /**
+     * 修改block
+     * @param id
+     * @param name
+     * @param description
+     * @param adminId
+     * @return
+     */
+    FormatResult<Object> putBlock(BigInteger id, String name, String icon, String description, BigInteger adminId);
+
+    /**
      * 删除Block Status 置0
      * @param id
      * @return

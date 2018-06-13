@@ -5,6 +5,7 @@
 <mapper namespace="com.tcqc.bbs.dao.BlockDao">
     <resultMap id="block" type="com.tcqc.bbs.entity.Block">
         <id property="id" column="id"/>
+        <result property="adminUserId" column="admin_user_id"/>
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
         <result property="description" column="description"/>
@@ -16,16 +17,21 @@
     </resultMap>
 
     <select id ="findAllBlockInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
-      select block.id, block.name, block.icon, count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
-      (select id, name, icon from block) block,
-      (select id, block_id from category ) category ,
-      (select id, category_id, update_time from post) post
-      where block.id = category.block_id and category.id = post.category_id
+--       select block.id, block.admin_user_id, block.name, block.icon, count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
+--       (select id, name, icon, admin_user_id from block) block,
+--       (select id, block_id from category ) category ,
+--       (select id, category_id, update_time from post) post
+--       where block.id = category.block_id and category.id = post.category_id
+--       group by block.id;
+      select block.id, block.admin_user_id, block.name, block.icon, count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
+      (select id, name, icon, admin_user_id from block) block left join
+      (select id, block_id from category ) category on block.id = category.block_id left join
+      (select id, category_id, update_time from post) post on category.id = post.category_id
       group by block.id;
     </select>
 
     <select id="getBlockById" resultMap="block">
-      select block.id, block.name, block.icon, block.description, category.id category_id, category.name category_name, category.description category_description
+      select block.id, block.admin_user_id, block.name, block.icon, block.description, category.id category_id, category.name category_name, category.description category_description
       from block
       left join category on block.id = category.block_id
       where block.id = #{id}

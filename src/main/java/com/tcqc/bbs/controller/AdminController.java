@@ -153,6 +153,24 @@ public class AdminController {
         return adminService.addBlock(name, icon ,description, id);
     }
 
+    /**
+     * 跟新blcok
+     * @param name
+     * @param icon
+     * @param description
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "block", method = RequestMethod.PUT)
+    public FormatResult<Object> putBlock(@RequestParam(value = "id")BigInteger id, @RequestParam(value = "name")String name, @RequestParam(value = "icon")String icon, @RequestParam(value = "description")String description, @RequestParam(value = "adminId") BigInteger adminId){
+        return adminService.putBlock(id, name, icon ,description, adminId);
+    }
+
+    /**
+     * 删除block
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "block/id/{id}", method = RequestMethod.DELETE)
     public FormatResult<Object> delBlock(@PathVariable(value = "id")BigInteger id){
         return adminService.delBlock(id);

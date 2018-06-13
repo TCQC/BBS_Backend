@@ -11,6 +11,8 @@ import java.util.List;
 public class Block {
     //版块ID
     private BigInteger id;
+    // 版主ID
+    private BigInteger adminUserId;
     //版块名称
     private String name;
     // 版块图标
@@ -34,6 +36,14 @@ public class Block {
 
     public void setId(BigInteger id) {
         this.id = id;
+    }
+
+    public BigInteger getAdminUserId() {
+        return adminUserId;
+    }
+
+    public void setAdminUserId(BigInteger adminUserId) {
+        this.adminUserId = adminUserId;
     }
 
     public String getName() {
@@ -96,6 +106,7 @@ public class Block {
     public String toString() {
         return "Block{" +
                 "id=" + id +
+                ", adminUserId=" + adminUserId +
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
                 ", description='" + description + '\'' +

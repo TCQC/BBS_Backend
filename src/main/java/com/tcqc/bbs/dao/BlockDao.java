@@ -53,10 +53,13 @@ public interface BlockDao {
     int addBlock(@Param("name")String name, @Param("icon") String icon, @Param("description")String description, @Param("admin_user_id")BigInteger id);
 
     /**
-     * 更新版块信息
-     * @param block block对象
+     * 更新block
+     * @param id
+     * @param name
+     * @param description
+     * @param adminId
      * @return
      */
-    @Update("update block set name = #{block.name}, description = #{block.description} where id = #{block.id}")
-    int putBlock(@Param("block") Block block);
+    @Update("update block set name = #{name}, icon=#{icon}, description = #{description}, admin_user_id = #{adminId} where id = #{id}")
+    int putBlock(@Param("id")BigInteger id, @Param("name")String name, @Param("icon") String icon, @Param("description")String description, @Param("adminId")BigInteger adminId);
 }

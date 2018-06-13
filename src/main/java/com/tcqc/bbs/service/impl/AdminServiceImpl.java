@@ -89,6 +89,15 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public FormatResult<Object> putBlock(BigInteger id, String name, String icon, String description, BigInteger adminId) {
+        int i = blockDao.putBlock(id, name, icon, description, adminId);
+        if (i == 0){
+            return FormatResultGenerator.genErrorResult("block ID 不存在");
+        }
+        return FormatResultGenerator.genSuccessResult();
+    }
+
+    @Override
     public FormatResult<Object> delBlock(BigInteger id) {
         int i = blockDao.changeStatusById(id,0);
         if (i == 0)
