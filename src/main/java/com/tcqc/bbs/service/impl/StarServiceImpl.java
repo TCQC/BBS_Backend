@@ -9,17 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
-import java.util.List;
 @Service
 public class StarServiceImpl implements StarService {
     @Autowired
     private StarDao starDao;
 
     @Override
-    public FormatResult<BigInteger> addStar(BigInteger postId, BigInteger collectionId) {
+    public FormatResult<BigInteger> addStar(BigInteger postId, BigInteger favoriteId) {
         Star star = new Star();
         star.setPostId(postId);
-        star.setCollectionId(collectionId);
+        star.setFavoriteId(favoriteId);
         starDao.addStar(star);
         return FormatResultGenerator.genSuccessResult(star.getId());
     }
@@ -30,9 +29,4 @@ public class StarServiceImpl implements StarService {
         return FormatResultGenerator.genSuccessResult();
     }
 
-    @Override
-    public FormatResult<List<Star>> findAllStarByFavoriteId(BigInteger id) {
-        List<Star> list = starDao.findAllStar(id);
-        return FormatResultGenerator.genSuccessResult(list);
-    }
 }

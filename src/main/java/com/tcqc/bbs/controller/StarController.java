@@ -1,5 +1,6 @@
 package com.tcqc.bbs.controller;
 
+import com.tcqc.bbs.dao.StarDao;
 import com.tcqc.bbs.entity.Star;
 import com.tcqc.bbs.service.StarService;
 import com.tcqc.bbs.util.format.FormatResult;
@@ -41,13 +42,4 @@ public class StarController {
         return starService.delStar(id);
     }
 
-    /**
-     * 查询收藏夹下的收藏记录
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "favorite/{id}", method = RequestMethod.GET)
-    public FormatResult<List<Star>> findAllStar(@PathVariable(value = "id")BigInteger id){
-        return starService.findAllStarByFavoriteId(id);
-    }
 }

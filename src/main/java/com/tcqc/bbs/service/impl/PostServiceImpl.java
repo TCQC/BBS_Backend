@@ -58,6 +58,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public FormatResult<List<PostInfo>> findAllPostByFavoriteId(BigInteger id, int startIndex, int pageSize, String sortType) {
+        List<PostInfo> postInfos = postDao.findAllPostInfoByFavoriteId(id, startIndex, pageSize, sortType);
+        if (postInfos == null){
+            return FormatResultGenerator.genErrorResult("favorite id not exist");
+        }
+        return FormatResultGenerator.genSuccessResult(postInfos);
+    }
+
+    @Override
     public FormatResult<BigInteger> addPost(BigInteger userId, BigInteger categoryId, String title, String content) {
         Post post = new Post();
         post.setUserId(userId); post.setCategoryId(categoryId);

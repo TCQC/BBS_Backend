@@ -12,7 +12,7 @@ public class Star {
     //收藏记录的ID
     private BigInteger id;
     //所对应的收藏夹ID
-    private BigInteger collectionId;
+    private BigInteger favoriteId;
     //每条记录所对应的帖子ID
     private BigInteger postId;
     //收藏记录的创建时间
@@ -30,12 +30,12 @@ public class Star {
         this.id = id;
     }
 
-    public BigInteger getCollectionId() {
-        return collectionId;
+    public BigInteger getFavoriteId() {
+        return favoriteId;
     }
 
-    public void setCollectionId(BigInteger collectionId) {
-        this.collectionId = collectionId;
+    public void setFavoriteId(BigInteger favoriteId) {
+        this.favoriteId = favoriteId;
     }
 
     public BigInteger getPostId() {
@@ -66,7 +66,7 @@ public class Star {
     public String toString() {
         return "Star{" +
                 "id=" + id +
-                ", collectionId=" + collectionId +
+                ", favoriteId=" + favoriteId +
                 ", postId=" + postId +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

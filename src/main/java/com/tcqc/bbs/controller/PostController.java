@@ -49,6 +49,12 @@ public class PostController {
         return postService.findAllPostByUserId(id, startIndex, pageSize, sort);
     }
 
+    @RequestMapping(value = "favorite/{id}/page/{page}/{sort}",method = RequestMethod.GET)
+    public FormatResult< List<PostInfo>> findAllPostInfoByFavoriteId(@PathVariable("id")BigInteger id, @PathVariable("page") int page,@PathVariable("sort") String sort){
+        int startIndex = (page - 1) * pageSize;
+        return postService.findAllPostByFavoriteId(id, startIndex, pageSize, sort);
+    }
+
     /**
      * 获取对应ID 的post的详细信息
      * @param id
