@@ -22,10 +22,8 @@ public class Reply {
     private BigInteger userId;
     //回复的创建时间
 
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //回复的更新时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
     //该条回复的回复者
     private UserInfo userInfo;
@@ -53,7 +51,6 @@ public class Reply {
     public void setContent(String content) {
         this.content = content;
     }
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -61,7 +58,6 @@ public class Reply {
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     public Timestamp getUpdateTime() {
         return updateTime;
     }

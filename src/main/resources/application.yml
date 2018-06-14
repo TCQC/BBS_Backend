@@ -42,7 +42,10 @@ spring:
         charset: UTF-8
         enabled: true
         force: true
-
+    jackson:
+      time-zone: GMT+8
+      locale: zh_CN
+      date-format: yyyy-MM-dd HH:mm:ss
 mybatis:
         mapper-locations: classpath:mapper/*.xml
         config-location: classpath:mybatis.xml

@@ -16,10 +16,8 @@ public class Star {
     //每条记录所对应的帖子ID
     private BigInteger postId;
     //收藏记录的创建时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //收藏记录的更新时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {
