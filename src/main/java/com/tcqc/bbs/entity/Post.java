@@ -1,6 +1,5 @@
 package com.tcqc.bbs.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tcqc.bbs.entity.info.UserInfo;
 

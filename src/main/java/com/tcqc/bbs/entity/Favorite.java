@@ -1,6 +1,5 @@
 package com.tcqc.bbs.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
