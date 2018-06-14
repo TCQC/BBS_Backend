@@ -11,6 +11,7 @@ public class BlockInfo {
     private String name;
 
     private String icon;
+    private BigInteger adminId;
     private String adminName;
     //版块拥有的分类数目
     private int categorySum;
@@ -41,6 +42,14 @@ public class BlockInfo {
 
     public void setAdminName(String adminName) {
         this.adminName = adminName;
+    }
+
+    public BigInteger getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(BigInteger adminId) {
+        this.adminId = adminId;
     }
 
     public Timestamp getUpdateTime() {
@@ -83,6 +92,7 @@ public class BlockInfo {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
+                ", adminId=" + adminId +
                 ", adminName='" + adminName + '\'' +
                 ", categorySum=" + categorySum +
                 ", postSum=" + postSum +
