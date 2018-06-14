@@ -72,7 +72,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
-    public FormatResult<Object> putUserInfo(@RequestParam("id")BigInteger id,
+    public FormatResult<UserInfo> putUserInfo(@RequestParam("id")BigInteger id,
                                             @RequestParam("gender")String gender,
                                             @RequestParam("avatar") String avatar,
                                             @RequestParam("workPlace")String workplace,

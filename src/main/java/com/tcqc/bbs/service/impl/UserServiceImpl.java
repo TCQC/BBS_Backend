@@ -53,12 +53,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FormatResult<Object> putUserInfo(BigInteger id, String avatar, String gender, String workplace, String description) {
+    public FormatResult<UserInfo> putUserInfo(BigInteger id, String avatar, String gender, String workplace, String description) {
         int i = userDao.putUserInfo(id, avatar, gender, workplace, description);
         if (i == 0){
             return FormatResultGenerator.genErrorResult("update userinfo error");
         }
-        return FormatResultGenerator.genSuccessResult();
+        UserInfo userInfo = userDao.getUserInfoById(id);
+        return FormatResultGenerator.genSuccessResult(userInfo);
     }
 
 

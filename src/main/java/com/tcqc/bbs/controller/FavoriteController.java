@@ -27,8 +27,8 @@ public class FavoriteController {
      * @return
      */
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public FormatResult<BigInteger> addFavorite(@RequestParam("userId") BigInteger userId, @RequestParam("name") String name){
-        return favoriteService.addFavorite(userId,name);
+    public FormatResult<BigInteger> addFavorite(@RequestParam("id") BigInteger id, @RequestParam("name") String name){
+        return favoriteService.addFavorite(id, name);
     }
 
     /**

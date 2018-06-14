@@ -31,5 +31,14 @@ public interface UserService {
      */
     FormatResult<UserInfo> register(String nickname, String username, String password);
 
-    FormatResult<Object> putUserInfo(BigInteger id, String avatar, String gender, String workplace, String description);
+    /**
+     * 更新用户信息
+     * @param id
+     * @param avatar
+     * @param gender
+     * @param workplace
+     * @param description
+     * @return
+     */
+    FormatResult<UserInfo> putUserInfo(BigInteger id, String avatar, String gender, String workplace, String description);
 }
