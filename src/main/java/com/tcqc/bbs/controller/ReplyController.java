@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/reply")
 public class ReplyController {

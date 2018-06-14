@@ -28,7 +28,6 @@ public class UserInfo {
     private int status;
     //用户工作地点
     private String workPlace;
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp lastLoginTime;
 
     public BigInteger getId() {

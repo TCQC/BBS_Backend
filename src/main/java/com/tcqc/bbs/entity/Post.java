@@ -26,10 +26,8 @@ public class Post {
     //帖子的状态( 0 删除 1 普通 2 加精 3 置顶)
     private  int status;
     //帖子的创建时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //帖子的更新时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
     //发帖人信息
     private UserInfo userInfo;

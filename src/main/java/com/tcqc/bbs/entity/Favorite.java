@@ -13,10 +13,8 @@ public class Favorite {
     //收藏夹的名称
     private String name;
     //收藏夹的创建时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //收藏夹的更新时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {

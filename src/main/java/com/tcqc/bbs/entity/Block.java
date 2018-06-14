@@ -22,10 +22,8 @@ public class Block {
     //版块的状态
     private int  status;
     //版块的创建时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //版块的更新时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
     //版块下面的所有的目录信息
     private List<Category> categories;

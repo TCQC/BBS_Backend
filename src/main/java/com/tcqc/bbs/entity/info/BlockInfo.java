@@ -17,7 +17,6 @@ public class BlockInfo {
     //版块拥有的帖子数目
     private int postSum;
     //版块下的帖子的最近更新时间
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {

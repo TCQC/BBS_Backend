@@ -25,7 +25,6 @@ public class PostInfo {
     //帖子的收藏量
     private int favoriteSum;
     //帖子的最后更新时间
-    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Timestamp updateTime;
 
     public BigInteger getId() {

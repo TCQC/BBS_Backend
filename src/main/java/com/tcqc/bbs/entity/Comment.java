@@ -26,10 +26,8 @@ public class Comment {
     //该条回复的状态（是否被设为禁止展示）
     private int status;
     //回复的创建时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //回复的更新时间
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
     // 该评论下的回复
     private List<Reply> replies;
