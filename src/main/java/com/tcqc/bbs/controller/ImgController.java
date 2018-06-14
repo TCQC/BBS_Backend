@@ -59,7 +59,7 @@ public class ImgController {
                 String error =  "error," + e.getMessage();
                 return FormatResultGenerator.genErrorResult(error);
             }
-            String result =  "http://" + ip + "/img/block/" + name + ".jpg";
+            String result =  "http://" + ip + ":8080/img/block/" + name + ".jpg";
 
             return FormatResultGenerator.genSuccessResult(result);
         } else {
