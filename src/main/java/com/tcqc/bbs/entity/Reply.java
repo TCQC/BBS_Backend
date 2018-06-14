@@ -1,6 +1,7 @@
 package com.tcqc.bbs.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tcqc.bbs.entity.info.UserInfo;
 
 import java.math.BigInteger;
@@ -9,6 +10,7 @@ import java.sql.Timestamp;
 /**
  * 二级回复列表
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Reply {
     //回复ID
     private BigInteger id;
@@ -51,7 +53,7 @@ public class Reply {
     public void setContent(String content) {
         this.content = content;
     }
-
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -59,7 +61,7 @@ public class Reply {
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     public Timestamp getUpdateTime() {
         return updateTime;
     }

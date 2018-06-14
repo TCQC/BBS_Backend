@@ -1,5 +1,6 @@
 package com.tcqc.bbs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tcqc.bbs.entity.info.UserInfo;
 
@@ -25,8 +26,10 @@ public class Comment {
     //该条回复的状态（是否被设为禁止展示）
     private int status;
     //回复的创建时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp createTime;
     //回复的更新时间
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Timestamp updateTime;
     // 该评论下的回复
     private List<Reply> replies;
@@ -71,7 +74,7 @@ public class Comment {
     public void setStatus(int status) {
         this.status = status;
     }
-
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -79,7 +82,7 @@ public class Comment {
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     public Timestamp getUpdateTime() {
         return updateTime;
     }
