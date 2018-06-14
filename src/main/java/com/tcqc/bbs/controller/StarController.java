@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "star")
@@ -21,14 +20,14 @@ public class StarController {
     }
 
     /**
-     * 添加收藏
-     * @param collectionId 收藏夹id
-     * @param postId     帖子id
+     * 添加到收藏夹
+     * @param favoriteId
+     * @param postId
      * @return
      */
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public FormatResult<BigInteger> addStar(@RequestParam("collectionId") BigInteger collectionId, @RequestParam("postId") BigInteger postId){
-        return starService.addStar(postId, collectionId);
+    public FormatResult<BigInteger> addStar(@RequestParam("favoriteId") BigInteger favoriteId, @RequestParam("postId") BigInteger postId){
+        return starService.addStar(postId, favoriteId);
     }
 
     /**

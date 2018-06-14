@@ -16,7 +16,7 @@ import java.io.*;
 @RestController
 @RequestMapping("upload")
 public class ImgController {
-
+    private String ip = "localhost";
     @RequestMapping(value = "/avatar",method = RequestMethod.POST)
     public FormatResult<String> uploadAvatar(@RequestParam(value = "name") String name, @RequestParam(value="file")MultipartFile file) {
         if (!file.isEmpty()) {
@@ -34,7 +34,7 @@ public class ImgController {
                 String error =  "error," + e.getMessage();
                 return FormatResultGenerator.genErrorResult(error);
             }
-            String result =  "http://localhost:8080/img/avatar/" + name + ".jpg";
+            String result =  "http://" + ip + ":8080/img/avatar/" + name + ".jpg";
             return FormatResultGenerator.genSuccessResult(result);
         } else {
             return null;
@@ -59,7 +59,7 @@ public class ImgController {
                 String error =  "error," + e.getMessage();
                 return FormatResultGenerator.genErrorResult(error);
             }
-            String result =  "http://localhost:8080/img/block/" + name + ".jpg";
+            String result =  "http://" + ip + "/img/block/" + name + ".jpg";
 
             return FormatResultGenerator.genSuccessResult(result);
         } else {

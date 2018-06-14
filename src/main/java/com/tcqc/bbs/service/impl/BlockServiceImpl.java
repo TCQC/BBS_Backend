@@ -40,4 +40,10 @@ public class BlockServiceImpl implements BlockService {
         }
         return FormatResultGenerator.genSuccessResult(blockInfos);
     }
+
+    @Override
+    public FormatResult<List<Map<String, Object>>> findAllBlockByAdminId(BigInteger id) {
+        List<Map<String, Object>> list = blockDao.findAllByAdminId(id);
+        return FormatResultGenerator.genSuccessResult(list);
+    }
 }

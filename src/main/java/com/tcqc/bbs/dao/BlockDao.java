@@ -20,6 +20,14 @@ public interface BlockDao {
     List<Map<String, Object>> findAll();
 
     /**
+     * 版主查询可以管理的版块信息
+     * @param id
+     * @return
+     */
+    @Select("select * from block where admin_user_id = #{id}")
+    List<Map<String, Object>> findAllByAdminId(@Param("id")BigInteger id);
+
+    /**
      * 加载所有版块信息 （主页加载用）
      * @return
      */

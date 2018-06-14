@@ -22,6 +22,12 @@ public interface BlockService {
      */
     FormatResult<List<BlockInfo>> findAllBlockInfo();
 
+    /**
+     * 版主查询自己管理的版块
+     * @param id
+     * @return
+     */
+    FormatResult<List<Map<String, Object>>> findAllBlockByAdminId(BigInteger id);
 
 
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("block")
@@ -41,5 +42,14 @@ public class BlockController {
         return blockService.findAllBlockInfo();
     }
 
+    /**
+     * 版主查询自己的版块信息
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/admin/{id}", method = RequestMethod.GET)
+    public FormatResult<List<Map<String, Object>>> findAllBlockByAdminId(@PathVariable(value = "id") BigInteger id){
+        return blockService.findAllBlockByAdminId(id);
+    }
 
 }
