@@ -16,7 +16,7 @@ public class PostController {
     /**
      * post 默认分页大小10
      */
-    private int pageSize = 10;
+    private int pageSize = 1000;
     private PostService postService;
     @Autowired
     public PostController(PostService postService){
@@ -106,7 +106,7 @@ public class PostController {
      * @return
      */
     @RequestMapping(value = "/block/{id}/page/{page}/{sort}", method = RequestMethod.GET)
-    public FormatResult<List<PostInfo>> findAllPostByBlockId(@PathVariable("id")BigInteger id, @PathVariable("page") int page, @PathVariable("sort") String sort){
+    public FormatResult<List<PostInfo>> findAllPostByBlockId(@PathVariable("id")BigInteger id, @PathVariable("page") int page, @PathVariable("sort")String sort){
         int startIndex = (page - 1) * pageSize;
         return postService.findAllPostByBlockId(id, startIndex, pageSize, sort);
     }

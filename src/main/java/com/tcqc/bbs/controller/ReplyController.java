@@ -24,7 +24,7 @@ public class ReplyController {
      * @param content 回复内容
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public FormatResult<Object> addReply(@RequestParam("userId") BigInteger userId,
                                          @RequestParam("commentId")BigInteger commentId,
                                          @RequestParam("content")String content){
@@ -36,7 +36,7 @@ public class ReplyController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/del/id/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public FormatResult<Object> delReply(@PathVariable(value = "id")BigInteger id){
         return replyService.delReply(id, 0);
     }

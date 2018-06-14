@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.Map;
+
 @Service
 public class StarServiceImpl implements StarService {
     @Autowired
@@ -27,6 +29,15 @@ public class StarServiceImpl implements StarService {
     public FormatResult<BigInteger> delStar(BigInteger id) {
         starDao.delStar(id);
         return FormatResultGenerator.genSuccessResult();
+    }
+
+    @Override
+    public FormatResult<Map<String, Object>> isStar(BigInteger userId, BigInteger postId) {
+        Map<String, Object> result = starDao.isStar(userId, postId);
+        if (result == null){
+            FormatResultGenerator.genErrorResult("post is not favorite");
+        }
+        return FormatResultGenerator.genSuccessResult(result);
     }
 
 }

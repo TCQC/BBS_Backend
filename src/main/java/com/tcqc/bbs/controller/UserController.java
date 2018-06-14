@@ -30,7 +30,7 @@ public class UserController {
      * @return 对应用户信息
      */
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
-    public FormatResult<UserInfo> getUserInfo(@PathVariable("id") BigInteger id){
+    public FormatResult<UserInfo> getUserInfo(@PathVariable("id")BigInteger id){
         return userService.getUserInfoById(id);
     }
 

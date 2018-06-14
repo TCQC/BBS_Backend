@@ -1,13 +1,12 @@
 package com.tcqc.bbs.controller;
 
-import com.tcqc.bbs.dao.StarDao;
-import com.tcqc.bbs.entity.Star;
 import com.tcqc.bbs.service.StarService;
 import com.tcqc.bbs.util.format.FormatResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "star")
@@ -20,7 +19,7 @@ public class StarController {
     }
 
     /**
-     * 添加到收藏夹
+     *
      * @param favoriteId
      * @param postId
      * @return
@@ -39,6 +38,17 @@ public class StarController {
     public FormatResult<BigInteger> delStar(@PathVariable(value = "id")BigInteger id)
     {
         return starService.delStar(id);
+    }
+
+    /**
+     * 判断帖子是否被用户收藏
+     * @param userId
+     * @param postId
+     * @return
+     */
+    @RequestMapping(value = "check/{userId}/{postId}")
+    public FormatResult<Map<String, Object>> isStar(@PathVariable("userId") BigInteger userId, @PathVariable("postId")BigInteger postId){
+        return starService.isStar(userId, postId);
     }
 
 }

@@ -1,6 +1,8 @@
 package com.tcqc.bbs.service.impl;
 
+import com.tcqc.bbs.dao.FavoriteDao;
 import com.tcqc.bbs.dao.UserDao;
+import com.tcqc.bbs.entity.Favorite;
 import com.tcqc.bbs.entity.info.UserInfo;
 import com.tcqc.bbs.service.UserService;
 import com.tcqc.bbs.util.format.FormatResult;
@@ -13,10 +15,12 @@ import java.math.BigInteger;
 @Service
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
+    private FavoriteDao favoriteDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao){
+    public UserServiceImpl(UserDao userDao, FavoriteDao favoriteDao) {
         this.userDao = userDao;
+        this.favoriteDao = favoriteDao;
     }
 
     @Override
@@ -49,6 +53,10 @@ public class UserServiceImpl implements UserService {
         if (result == 0)
             return FormatResultGenerator.genErrorResult("无法插入数据库");
         UserInfo userInfo = userDao.getUserInfoByUsernameAndPassword(username, password);
+        Favorite favorite = new Favorite();
+        favorite.setName("默认收藏");
+        favorite.setUserId(userInfo.getId());
+        favoriteDao.addFavorite(favorite);
         return  FormatResultGenerator.genSuccessResult(userInfo);
     }
 
