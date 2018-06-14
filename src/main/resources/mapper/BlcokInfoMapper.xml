@@ -17,10 +17,11 @@
     </resultMap>
 
     <select id ="findAllBlockInfo" resultType="com.tcqc.bbs.entity.info.BlockInfo">
-      select block.id, block.admin_user_id, block.name, block.icon, count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
+      select block.id, block.admin_user_id, user.nickname adminName, block.name, block.icon, count(distinct category.id) category_sum, count(post.id) post_sum ,max(post.update_time) update_time from
       (select id, name, icon, admin_user_id from block) block left join
       (select id, block_id from category ) category on block.id = category.block_id left join
       (select id, category_id, update_time from post) post on category.id = post.category_id
+      left join (select id, nickname from user) user on block.admin_user_id = user.id
       group by block.id;
     </select>
 

@@ -11,6 +11,7 @@ public class BlockInfo {
     private String name;
 
     private String icon;
+    private String adminName;
     //版块拥有的分类数目
     private int categorySum;
     //版块拥有的帖子数目
@@ -34,6 +35,13 @@ public class BlockInfo {
         this.name = name;
     }
 
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
 
     public Timestamp getUpdateTime() {
         return updateTime;
@@ -69,17 +77,16 @@ public class BlockInfo {
         this.icon = icon;
     }
 
-
     @Override
     public String toString() {
         return "BlockInfo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
+                ", adminName='" + adminName + '\'' +
                 ", categorySum=" + categorySum +
                 ", postSum=" + postSum +
                 ", updateTime=" + updateTime +
                 '}';
     }
-
 }
