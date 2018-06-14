@@ -35,7 +35,7 @@ public class StarServiceImpl implements StarService {
     public FormatResult<Map<String, Object>> isStar(BigInteger userId, BigInteger postId) {
         Map<String, Object> result = starDao.isStar(userId, postId);
         if (result == null){
-            FormatResultGenerator.genErrorResult("post is not favorite");
+            return FormatResultGenerator.genErrorResult("post is not favorite");
         }
         return FormatResultGenerator.genSuccessResult(result);
     }
