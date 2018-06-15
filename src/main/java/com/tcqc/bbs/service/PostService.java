@@ -6,6 +6,7 @@ import com.tcqc.bbs.util.format.FormatResult;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 public interface PostService {
     /**
@@ -44,6 +45,17 @@ public interface PostService {
      * @return
      */
     FormatResult<List<PostInfo>> findAllPostByUserId(BigInteger id, int startIndex, int pageSize, String sortType);
+
+
+    /**
+     * 查询某个用户下的所有提问
+     * @param id category id
+     * @param startIndex 开始
+     * @param pageSize 页面大小
+     * @param sortType 排序方式
+     * @return
+     */
+    FormatResult<List<PostInfo>> findQuestionByUserId(BigInteger id, int startIndex, int pageSize, String sortType);
 
     /**
      * 根据收藏夹ID查询
@@ -87,5 +99,12 @@ public interface PostService {
      * @return
      */
     FormatResult<List<PostInfo>> getHotPost();
+
+    /**
+     * 得到用户帖子量，提问量，评论量
+     * @param id
+     * @return
+     */
+    FormatResult<Map<String, Object>> getNumberInfoByUserId(BigInteger id);
 
 }

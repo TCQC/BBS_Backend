@@ -122,5 +122,16 @@ public interface PostDao {
      * @param pageSize 每页的大小
      * @return 提问的帖子信息列表
      */
-    List<PostInfo>findQuestionByUserId(@Param("id")BigInteger id,@Param("startIndex")int starIndex, @Param("pageSize")int pageSize);
+    List<PostInfo>findQuestionByUserId(@Param("id")BigInteger id,@Param("startIndex")int starIndex, @Param("pageSize")int pageSize,@Param("sortType") String sortType);
+
+    /**
+     * 得到用户的发帖数量，提问数量，评论量等信息
+     * @param id
+     * @return
+     */
+    @Select(" select postSum, questionSum, commentSum from\n" +
+            "  (select count(id) postSum from post where user_id = #{id} and category_id != 1 and status != 0) postSum,\n" +
+            "  (select count(id) questionSum from post where user_id = #{id} and category_id = 1 and status != 0)questionSum,\n" +
+            "  (select count(id) commentSum from comment where user_id = #{id} and status = 1) commentSum;")
+    Map<String, Object> getNumberInfoByUserId(@Param("id") BigInteger id);
 }

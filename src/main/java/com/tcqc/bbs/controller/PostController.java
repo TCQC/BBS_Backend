@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "post")
@@ -109,5 +110,28 @@ public class PostController {
     public FormatResult<List<PostInfo>> findAllPostByBlockId(@PathVariable("id")BigInteger id, @PathVariable("page") int page, @PathVariable("sort")String sort){
         int startIndex = (page - 1) * pageSize;
         return postService.findAllPostByBlockId(id, startIndex, pageSize, sort);
+    }
+
+    /**
+     * 获取用户发帖数
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/number/id/{id}", method = RequestMethod.GET)
+    public FormatResult<Map<String, Object>> getNumberInfoByUserId(@PathVariable("id") BigInteger id){
+        return postService.getNumberInfoByUserId(id);
+    }
+
+    /**
+     * 获取某个用户的所有的提问
+     * @param id 用户ID
+     * @param page 页数
+     * @param sort 排序条件
+     * @return
+     */
+    @RequestMapping(value = "question/{id}/page/{page}/{sort}",method = RequestMethod.GET)
+    public FormatResult< List<PostInfo>> findQuestionByUserId(@PathVariable("id")BigInteger id, @PathVariable("page") int page,@PathVariable("sort") String sort){
+        int startIndex = (page - 1) * pageSize;
+        return postService.findQuestionByUserId(id, startIndex, pageSize, sort);
     }
 }

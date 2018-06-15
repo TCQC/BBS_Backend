@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -58,6 +59,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public FormatResult<List<PostInfo>> findQuestionByUserId(BigInteger id, int startIndex, int pageSize, String sortType) {
+        List<PostInfo> postInfos = postDao.findQuestionByUserId(id, startIndex, pageSize, sortType);
+        if (postInfos == null){
+            return FormatResultGenerator.genErrorResult("user id not exist");
+        }
+        return FormatResultGenerator.genSuccessResult(postInfos);
+    }
+
+    @Override
     public FormatResult<List<PostInfo>> findAllPostByFavoriteId(BigInteger id, int startIndex, int pageSize, String sortType) {
         List<PostInfo> postInfos = postDao.findAllPostInfoByFavoriteId(id, startIndex, pageSize, sortType);
         if (postInfos == null){
@@ -96,6 +106,12 @@ public class PostServiceImpl implements PostService {
     public FormatResult<List<PostInfo>> getHotPost() {
         List<PostInfo> list = postDao.getHotPost();
         return FormatResultGenerator.genSuccessResult(list);
+    }
+
+    @Override
+    public FormatResult<Map<String, Object>> getNumberInfoByUserId(BigInteger id) {
+        Map<String ,Object> map = postDao.getNumberInfoByUserId(id);
+        return FormatResultGenerator.genSuccessResult(map);
     }
 
 
