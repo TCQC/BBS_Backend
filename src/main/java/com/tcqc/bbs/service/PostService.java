@@ -66,6 +66,18 @@ public interface PostService {
      * @return
      */
     FormatResult<List<PostInfo>> findAllPostByFavoriteId(BigInteger id, int startIndex, int pageSize, String sortType);
+
+
+    /**
+     * 关键字搜索帖子
+     * @param keyword
+     * @param startIndex
+     * @param pageSize
+     * @param sortType
+     * @return
+     */
+    FormatResult<List<PostInfo>> findAllPostInfoByKeyword(String keyword, int startIndex, int pageSize, String sortType);
+
     /**
      * 添加Post
      * @param userId 用户id

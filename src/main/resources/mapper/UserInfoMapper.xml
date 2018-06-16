@@ -5,12 +5,12 @@
 <mapper namespace="com.tcqc.bbs.dao.UserDao">
 
     <select id="getUserInfoById" resultType="com.tcqc.bbs.entity.info.UserInfo">
-  select user.id, user.nickname, user.avatar, user.gender, user.workplace, user.status,user.exp, user.description, user.last_login_time lastLoginTime, rank.name rank from user, rank
+  select user.id, user.nickname, user.avatar, user.gender, user.workplace, user.status, user.exp, user.description, user.last_login_time lastLoginTime, rank.name rank from user, rank
   where user.exp between rank.min_exp and rank.max_exp and user.id = #{id};
     </select>
 
     <select id="getUserInfoByUsernameAndPassword" resultType="com.tcqc.bbs.entity.info.UserInfo">
-  select user.id, user.nickname, user.avatar, user.gender, user.workplace, user.exp, user.description, user.last_login_time lastLoginTime, rank.name rank from user, rank
+  select user.id, user.nickname, user.avatar, user.gender, user.workplace, user.status, user.exp, user.description, user.last_login_time lastLoginTime, rank.name rank from user, rank
   where user.exp between rank.min_exp and rank.max_exp and user.username = #{username} and user.password = #{password};
     </select>
 

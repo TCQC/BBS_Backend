@@ -86,6 +86,16 @@ public interface PostDao {
     List<PostInfo> findAllPostInfoByFavoriteId(@Param("id")BigInteger id, @Param("startIndex")int startIndex,@Param("pageSize")int pageSize, @Param("sortType")String  sortType);
 
     /**
+     * 搜索帖子功能
+     * @param keyword
+     * @param startIndex
+     * @param pageSize
+     * @param sortType
+     * @return
+     */
+    List<PostInfo> findAllPostInfoByKeyword(@Param("keyword")String keyword, @Param("startIndex")int startIndex,@Param("pageSize")int pageSize, @Param("sortType")String  sortType);
+
+    /**
      * 根据帖子Id查看某条帖子的详细信息
      */
     Post getPostById(@Param("id")BigInteger id);

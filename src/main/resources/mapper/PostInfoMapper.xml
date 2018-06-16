@@ -56,6 +56,20 @@ select p.id id, p.title title, u.id userId, u.nickname nickname, u.avatar avatar
      limit #{startIndex}, #{pageSize};
     </select>
 
+    <select id ="findAllPostInfoByKeyword" resultType="com.tcqc.bbs.entity.info.PostInfo">
+     select p.id id, p.title title, u.id userId, u.nickname nickname, u.avatar, p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
+     star, favorite,
+     (select id, category_id, title, content, user_id, status, update_time from post where status != 0) p
+     left join (select id, nickname, avatar from user) u on p.user_id=u.id
+     left join (select id, post_id from star)s on s.post_id = p.id
+     left join (select id, post_id, status from comment where status = 1) c on c.post_id = p.id
+     where nickname like #{keyword} or p.title like #{keyword} or p.content like #{keyword} and star.favorite_id = favorite.id and star.post_id = p.id
+     group by p.id
+     order by status desc, ${sortType} desc
+     limit #{startIndex}, #{pageSize};
+    </select>
+
+
     <select id ="findQuestionByUserId" resultType="com.tcqc.bbs.entity.info.PostInfo">
      select p.id id, p.title title, u.id userId, u.nickname nickname, u.avatar, p.status status ,count(s.id) favorite_sum,count(c.id) comment_sum,p.update_time updateTime from
      (select id,category_id, title, user_id, status, update_time from post where status != 0) p

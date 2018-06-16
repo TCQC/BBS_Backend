@@ -78,6 +78,10 @@ public class PostServiceImpl implements PostService {
         }
         return FormatResultGenerator.genSuccessResult(postInfos);
     }
+    @Override
+    public FormatResult<List<PostInfo>> findAllPostInfoByKeyword(String keyword, int startIndex, int pageSize, String sortType){
+        return FormatResultGenerator.genSuccessResult(postDao.findAllPostInfoByKeyword(keyword, startIndex, pageSize, sortType));
+    }
 
     @Override
     public FormatResult<BigInteger> addPost(BigInteger userId, BigInteger categoryId, String title, String content) {

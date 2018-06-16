@@ -30,7 +30,9 @@ public class UserServiceImpl implements UserService {
     public FormatResult<UserInfo> login(String username, String password) {
         UserInfo userInfo = userDao.getUserInfoByUsernameAndPassword(username, password);
         if (userInfo == null){
-            return FormatResultGenerator.genErrorResult("用户名或密码不正确");
+            return FormatResultGenerator.genErrorResult("用户ID不存在");
+        } else if (userInfo.getStatus() == 0){
+            return FormatResultGenerator.genErrorResult("该用户已被拉黑");
         }
         updateLastLoginTime(username);
         expDao.addExpByUsername(username, 1);

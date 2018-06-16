@@ -99,6 +99,14 @@ public class PostController {
         return postService.getHotPost();
     }
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public FormatResult<List<PostInfo>> findAllPostByKeyWord(@RequestParam("keyword")String keyword){
+        keyword = "%" + keyword + "%";
+        int page = 1;
+        int startIndex = (page - 1) * pageSize;
+        return postService.findAllPostInfoByKeyword(keyword, startIndex, pageSize, "id");
+    }
+
     /**
      * 获取某个版块的所有帖子
      * @param id 版块id
@@ -111,6 +119,7 @@ public class PostController {
         int startIndex = (page - 1) * pageSize;
         return postService.findAllPostByBlockId(id, startIndex, pageSize, sort);
     }
+
 
     /**
      * 获取用户发帖数
