@@ -39,6 +39,13 @@ public interface PostDao {
     @Update("update post set status = #{status} where id = #{id} ")
     int changePostStatusById(@Param("id") BigInteger id, @Param("status")int status);
 
+    /**
+     * 删除用户所有的帖子
+     */
+    @Update("update post set status = #{status} where user_id = #{userId} ")
+    int changeAllPostStatusByUserId(@Param("userId") BigInteger userId, @Param("status")int status);
+
+
 
     /**
      * 查看某个用户的所有PostInfo (需要添加startIndex 和 sortType参数）

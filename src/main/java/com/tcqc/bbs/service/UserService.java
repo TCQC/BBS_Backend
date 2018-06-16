@@ -41,4 +41,11 @@ public interface UserService {
      * @return
      */
     FormatResult<UserInfo> putUserInfo(BigInteger id, String avatar, String gender, String workplace, String description);
+
+    /**
+     * 更新用户的最后登录时间
+     * @param username
+     * @return
+     */
+    FormatResult<Object> updateLastLoginTime(String  username);
 }

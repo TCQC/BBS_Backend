@@ -1,5 +1,6 @@
 package com.tcqc.bbs.service.impl;
 
+import com.tcqc.bbs.dao.ExpDao;
 import com.tcqc.bbs.dao.ReplyDao;
 import com.tcqc.bbs.entity.Reply;
 import com.tcqc.bbs.service.ReplyService;
@@ -12,8 +13,13 @@ import java.math.BigInteger;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
-    @Autowired
+
     private ReplyDao replyDao;
+    private ExpDao expDao;
+    public ReplyServiceImpl(ReplyDao replyDao, ExpDao expDao){
+        this.replyDao = replyDao;
+        this.expDao = expDao;
+    }
 
 
     @Override
@@ -23,6 +29,7 @@ public class ReplyServiceImpl implements ReplyService {
         reply.setCommentId(commentId);
         reply.setContent(content);
         replyDao.addReply(reply);
+        expDao.addExpByUserId(userId,3);
         return FormatResultGenerator.genSuccessResult(reply.getId());
     }
 

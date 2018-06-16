@@ -100,4 +100,7 @@ public interface UserDao {
 
     @Select("select count(id) from user")
     int getUserSum();
+
+    @Update("update user set last_login_time = sysdate() where username = #{username};")
+     int updateLastLoginTime(@Param("username") String username);
 }

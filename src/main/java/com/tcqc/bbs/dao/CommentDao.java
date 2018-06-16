@@ -40,6 +40,20 @@ public interface CommentDao {
             "where c.user_id = #{userId}")
     List<Map<String, Object>> getAllCommentByUserId(@Param("userId")BigInteger userId);
 
+    /**
+     * 删除用户的所有评论 该功能在删除用户时使用
+     * @param userId
+     * @return
+     */
+    @Update("update comment set status = #{status} where user_id = #{userId}")
+    int changeCommentStatusByUserId(@Param("userId") BigInteger userId, @Param("status") int status);
+
+    /**
+     *删除某个帖子的评论 该功能在删除帖子时使用
+     */
+    @Update("update comment set status = #{status} where post_id = #{postId}")
+    int changeCommentStatusByPostId(@Param("postId") BigInteger postId, @Param("status") int status);
+
 
 
 //    /**

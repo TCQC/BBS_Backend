@@ -1,9 +1,6 @@
 package com.tcqc.bbs.service.impl;
 
-import com.tcqc.bbs.dao.AdminDao;
-import com.tcqc.bbs.dao.BlockDao;
-import com.tcqc.bbs.dao.PostDao;
-import com.tcqc.bbs.dao.UserDao;
+import com.tcqc.bbs.dao.*;
 import com.tcqc.bbs.entity.Admin;
 import com.tcqc.bbs.service.AdminService;
 import com.tcqc.bbs.util.format.FormatResult;
@@ -21,13 +18,17 @@ public class AdminServiceImpl implements AdminService {
     private AdminDao adminDao;
     private PostDao postDao;
     private BlockDao blockDao;
+    private CommentDao commentDao;
+    private ReplyDao replyDao;
 
     @Autowired
-    public AdminServiceImpl(UserDao userDao, AdminDao adminDao, PostDao postDao, BlockDao blockDao) {
+    public AdminServiceImpl(UserDao userDao, AdminDao adminDao, PostDao postDao, BlockDao blockDao, CommentDao commentDao, ReplyDao replyDao ) {
         this.userDao = userDao;
         this.adminDao = adminDao;
         this.postDao = postDao;
         this.blockDao = blockDao;
+        this.commentDao = commentDao;
+        this.replyDao = replyDao;
     }
 
     @Override
@@ -71,12 +72,21 @@ public class AdminServiceImpl implements AdminService {
         return FormatResultGenerator.genSuccessResult(users);
     }
 
+    @Override
     public FormatResult<Object> changeUserStatus(BigInteger id, int status) {
         int result = userDao.changeStatusById(id, status);
         if (result <= 0){
             return FormatResultGenerator.genErrorResult("用户ID不存在");
         }
+
         return FormatResultGenerator.genSuccessResult();
+    }
+
+    @Override
+    public void changeAllStatusOfUser(BigInteger id, int status){
+        postDao.changeAllPostStatusByUserId(id, status);
+        commentDao.changeCommentStatusByUserId(id, status);
+        replyDao.changeStatusByUserId(id, status);
     }
 
     @Override

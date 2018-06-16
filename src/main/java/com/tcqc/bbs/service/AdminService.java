@@ -101,4 +101,11 @@ public interface AdminService {
      * @return
      */
     FormatResult<Integer> getPostPageNum(int size);
+
+    /**
+     * 删除或者恢复用户时改变的一些信息状态
+     * @param id
+     * @param status
+     */
+    void changeAllStatusOfUser(BigInteger id, int status);
 }

@@ -1,6 +1,7 @@
 package com.tcqc.bbs.service.impl;
 
 import com.tcqc.bbs.dao.CommentDao;
+import com.tcqc.bbs.dao.ExpDao;
 import com.tcqc.bbs.entity.Comment;
 import com.tcqc.bbs.service.CommentService;
 import com.tcqc.bbs.util.format.FormatResult;
@@ -16,10 +17,12 @@ import java.util.Map;
 @Service
 public class CommentServiceImpl implements CommentService {
     private CommentDao commentDao;
+    private ExpDao expDao;
 
     @Autowired
-    public CommentServiceImpl(CommentDao commentDao){
+    public CommentServiceImpl(CommentDao commentDao, ExpDao expDao){
         this.commentDao = commentDao;
+        this.expDao = expDao;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setPostId(postId);
         comment.setContent(content);
         int id= commentDao.addComment(comment);
+        expDao.addExpByUserId(userId, 3);
         return FormatResultGenerator.genSuccessResult(comment.getId());
     }
 

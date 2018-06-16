@@ -24,4 +24,14 @@ public interface ReplyDao {
      */
     @Update("update reply set status = #{status} where id = #{id}")
     int changeStatuById(@Param("id") BigInteger id, @Param("status") int status);
+
+    /**
+     * 删除某个用户所有的回复
+     * @param userId
+     * @param status
+     * @return
+     */
+    @Update("update reply set status = #{status} where user_id = #{userId} ")
+    int changeStatusByUserId(@Param("userId") BigInteger userId, @Param("status") int status);
+
 }

@@ -1,5 +1,6 @@
 package com.tcqc.bbs.service.impl;
 
+import com.tcqc.bbs.dao.ExpDao;
 import com.tcqc.bbs.dao.PostDao;
 import com.tcqc.bbs.entity.Post;
 import com.tcqc.bbs.entity.info.PostInfo;
@@ -15,11 +16,13 @@ import java.util.Map;
 
 @Service
 public class PostServiceImpl implements PostService {
-    PostDao postDao;
+    private PostDao postDao;
+    private ExpDao expDao;
 
     @Autowired
-    public PostServiceImpl(PostDao postDao){
+    public PostServiceImpl(PostDao postDao, ExpDao expDao){
         this.postDao = postDao;
+        this.expDao = expDao;
     }
 
     @Override
@@ -82,6 +85,7 @@ public class PostServiceImpl implements PostService {
         post.setUserId(userId); post.setCategoryId(categoryId);
         post.setTitle(title); post.setContent(content);
         postDao.addPost(post);
+        expDao.addExpByUserId(userId, 5);
         return FormatResultGenerator.genSuccessResult(post.getId());
     }
 

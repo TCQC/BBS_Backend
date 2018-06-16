@@ -89,9 +89,12 @@ public class AdminController {
      */
     @RequestMapping(value = "user/id/{id}", method = RequestMethod.DELETE)
     public FormatResult<Object> delUser(@PathVariable(value = "id")BigInteger id){
+        adminService.changeAllStatusOfUser(id, 0);
         return adminService.changeUserStatus(id, 0);
         // 删除用户所有发帖
     }
+
+
 
     /**
      * 恢复用户
@@ -100,6 +103,7 @@ public class AdminController {
      */
     @RequestMapping(value = "user/id/{id}", method = RequestMethod.PUT)
     public FormatResult<Object> recUser(@PathVariable(value = "id")BigInteger id){
+        adminService.changeAllStatusOfUser(id, 1);
         return adminService.changeUserStatus(id, 1);
         // 恢复用户所有发帖
     }

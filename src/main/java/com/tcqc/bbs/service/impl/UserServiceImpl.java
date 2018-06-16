@@ -1,5 +1,6 @@
 package com.tcqc.bbs.service.impl;
 
+import com.tcqc.bbs.dao.ExpDao;
 import com.tcqc.bbs.dao.FavoriteDao;
 import com.tcqc.bbs.dao.UserDao;
 import com.tcqc.bbs.entity.Favorite;
@@ -16,11 +17,13 @@ import java.math.BigInteger;
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
     private FavoriteDao favoriteDao;
+    private ExpDao expDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, FavoriteDao favoriteDao) {
+    public UserServiceImpl(UserDao userDao, FavoriteDao favoriteDao, ExpDao expDao) {
         this.userDao = userDao;
         this.favoriteDao = favoriteDao;
+        this.expDao = expDao;
     }
 
     @Override
@@ -29,6 +32,9 @@ public class UserServiceImpl implements UserService {
         if (userInfo == null){
             return FormatResultGenerator.genErrorResult("用户名或密码不正确");
         }
+        updateLastLoginTime(username);
+        expDao.addExpByUsername(username, 1);
+        userInfo = userDao.getUserInfoByUsernameAndPassword(username, password);
         return FormatResultGenerator.genSuccessResult(userInfo);
     }
 
@@ -68,6 +74,11 @@ public class UserServiceImpl implements UserService {
         }
         UserInfo userInfo = userDao.getUserInfoById(id);
         return FormatResultGenerator.genSuccessResult(userInfo);
+    }
+
+    @Override
+    public FormatResult<Object> updateLastLoginTime(String username) {
+        return FormatResultGenerator.genSuccessResult(userDao.updateLastLoginTime(username));
     }
 
 
