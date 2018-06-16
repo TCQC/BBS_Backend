@@ -84,12 +84,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FormatResult<Boolean> checkUserExist(String nickname) {
+    public FormatResult<String> checkUserExist(String nickname) {
         String userInfo = userDao.isNicknameExist(nickname);
         if (userInfo == null){
             return FormatResultGenerator.genErrorResult("用户不存在");
         }
-        return FormatResultGenerator.genSuccessResult(true);
+        return FormatResultGenerator.genSuccessResult(userInfo);
     }
 
 

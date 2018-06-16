@@ -49,5 +49,5 @@ public interface UserService {
      */
     FormatResult<Object> updateLastLoginTime(String  username);
 
-    FormatResult<Boolean> checkUserExist(String nickname);
+    FormatResult<String> checkUserExist(String nickname);
 }

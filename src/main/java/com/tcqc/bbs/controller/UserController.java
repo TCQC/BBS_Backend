@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public FormatResult<Boolean> getUserInfo(@RequestParam("nickname")String nickname){
+    public FormatResult<String> getUserInfo(@RequestParam("nickname")String nickname){
         return userService.checkUserExist(nickname);
     }
     /**

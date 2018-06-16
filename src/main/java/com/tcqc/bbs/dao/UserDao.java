@@ -26,7 +26,7 @@ public interface UserDao {
      * @param nickname
      * @return 存在则返回，否则为null
      */
-    @Select("select nickname from user where nickname = #{nickname}")
+    @Select("select id from user where nickname = #{nickname}")
     String isNicknameExist(@Param("nickname") String nickname);
 
     /**
@@ -34,7 +34,7 @@ public interface UserDao {
      * @param username
      * @return 存在则返回，否则为null
      */
-    @Select("select username from user where username = #{username}")
+    @Select("select id from user where username = #{username}")
     String isUsernameExist(@Param("username") String username);
 
 
