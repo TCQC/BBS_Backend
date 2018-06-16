@@ -48,4 +48,6 @@ public interface UserService {
      * @return
      */
     FormatResult<Object> updateLastLoginTime(String  username);
+
+    FormatResult<Boolean> checkUserExist(String nickname);
 }

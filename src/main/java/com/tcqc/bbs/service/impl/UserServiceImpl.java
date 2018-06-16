@@ -83,5 +83,14 @@ public class UserServiceImpl implements UserService {
         return FormatResultGenerator.genSuccessResult(userDao.updateLastLoginTime(username));
     }
 
+    @Override
+    public FormatResult<Boolean> checkUserExist(String nickname) {
+        String userInfo = userDao.isNicknameExist(nickname);
+        if (userInfo == null){
+            return FormatResultGenerator.genErrorResult("用户不存在");
+        }
+        return FormatResultGenerator.genSuccessResult(true);
+    }
+
 
 }

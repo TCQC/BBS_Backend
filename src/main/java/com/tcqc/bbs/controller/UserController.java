@@ -34,6 +34,10 @@ public class UserController {
         return userService.getUserInfoById(id);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public FormatResult<Boolean> getUserInfo(@RequestParam("nickname")String nickname){
+        return userService.checkUserExist(nickname);
+    }
     /**
      * 用户登录
      * @param username 用户名

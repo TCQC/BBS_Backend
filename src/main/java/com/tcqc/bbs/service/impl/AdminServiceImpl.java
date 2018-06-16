@@ -7,6 +7,7 @@ import com.tcqc.bbs.util.format.FormatResult;
 import com.tcqc.bbs.util.format.FormatResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -90,11 +91,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    @Transactional
     public FormatResult<Object> addBlock(String name, String icon, String description, BigInteger id) {
         int i  =  blockDao.addBlock(name, icon, description, id);
         if (i == 0){
             return FormatResultGenerator.genErrorResult("无法创建block");
         }
+        userDao.changeStatusById(id, 2);
         return FormatResultGenerator.genSuccessResult();
     }
 

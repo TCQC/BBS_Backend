@@ -20,7 +20,7 @@ public interface CategoryDao {
     @Select("select * from category where status = 1 and block_id = #{blockId}")
     List<Category> findAllByBlockId(@Param("blockId") BigInteger id);
 
-    @Select("select category.id, category.name, category.description, block_id, block.name block_name from category, block where category.id = #{id} and category.block_id = block.id;")
+    @Select("select category.id, category.name, category.description, block_id, block.name block_name from category, block where category.id = #{id} and category.block_id = block.id and category.status = 1;")
     Map<String, Object> getCategoryById(@Param("id")BigInteger id);
 
     @Insert("insert into category (block_id, name, description) value (#{blockId}, #{name}, #{description})")
