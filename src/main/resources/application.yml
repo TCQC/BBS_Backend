@@ -13,9 +13,9 @@ spring:
           filters: stat
           driver-class-name: com.mysql.jdbc.Driver
           #基本属性
-          url: jdbc:mysql://123.206.28.162:3306/bbs?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-          username: tcqc
-          password: tuanzi
+          url: jdbc:mysql://localhost:3306/bbs?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+          username: root
+          password:
           #配置初始化大小/最小/最大
           initial-size: 1
           min-idle: 1

@@ -58,7 +58,7 @@ public interface MessageDao {
      * @param message_id
      * @return
      */
-    @Update("update contact set user_one = #{user_one}, user_two = #{user_two}, message = #{message_id}")
+    @Update("update contact set message_id = #{message_id} where (user_one = #{user_one} and user_two = #{user_two}) or (user_one = #{user_two} and user_two = #{user_one}) ")
     int updateContact(@Param("user_one") BigInteger user_one, @Param("user_two") BigInteger user_two, @Param("message_id") BigInteger message_id);
 
     /**

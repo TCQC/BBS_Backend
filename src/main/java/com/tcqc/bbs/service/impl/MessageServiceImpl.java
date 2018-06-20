@@ -33,10 +33,10 @@ public class MessageServiceImpl implements MessageService {
         message.setContent(content);
         messageDao.addMessage(message);
         if(messageDao.isContact(sender_id, receiver_id) != null){
-            messageDao.updateContact(sender_id, receiver_id,message.getId());
+            messageDao.updateContact(sender_id, receiver_id, message.getId());
             messageDao.updateContact(receiver_id, sender_id, message.getId());
         }else{
-            messageDao.addContact(sender_id,receiver_id,message.getId());
+            messageDao.addContact(sender_id,receiver_id, message.getId());
             messageDao.addContact(receiver_id, sender_id, message.getId());
         }
         return FormatResultGenerator.genSuccessResult(message.getId());
